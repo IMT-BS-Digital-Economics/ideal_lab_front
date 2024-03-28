@@ -1,0 +1,36 @@
+#Jetbrains's dir
+
+.idea
+
+#Apple's dir
+
+.DS_Store
+
+#Generated modules
+
+node_modules
+front/.next
+*lock*
+dist/
+.next
+
+# Test files
+
+*spec.ts
+
+# vercel
+
+*.svg
+
+# prisma
+
+*.db*
+*.sql
+*.log
+
+# Env
+
+.env
+
+
+
