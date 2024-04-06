@@ -71,136 +71,137 @@ const OutputBox = ({itemId, itemStatus}) => {
     hookGetOutput(itemId, itemStatus, setErrorReportList, "err_output", isSubmitErrO, setIsSubmitErrO);
 
     return (
-        <Flex margin={"2%"} direction={{sm:'column', lg:'row'}}>
-            <Card flex={"1"}>
-                <CardHeader>
-                    <Flex>
-                        <div>
-                            <Heading>
-                                Live Output
-                            </Heading>
-                            <Text>You want to see you're collect in live, it's possible</Text>
-                        </div>
-                        <Spacer />
-                        {
-                            !isSubmit ?
-                                (
-                                    <Tooltip hasArrow label={"Can't use Live preview right now, item should be in Running mode"} isDisabled={itemStatus === "running"}>
-                                        <Button
-                                            colorScheme={"green"}
-                                            onClick={() => {
-                                                if (itemStatus === "running") {
-                                                    setOutputType("output")
-                                                    setIsSubmit(!isSubmit);
-                                                }
-                                            }}
-                                            ml={3}
-                                        >
-                                            Start Live
-                                        </Button>
-                                    </Tooltip>
-                                ) : (
-                                    <ChakraBox
-                                        animate={{
-                                            opacity: ["75%", "10%", "75%", "10%", "75%", "10%"],
-                                        }}
-                                        transition={{
-                                            duration:3,
-                                            repeat: Infinity,
-                                            repeatType: "loop",
-                                        }}
-                                    >
-                                        <Button
-                                            colorScheme={"green"}
-                                            onClick={() => {
-                                                setOutputType("output")
-                                                setIsSubmit(!isSubmit);
-                                            }}
-                                            ml={3}
-                                        >
-                                            Stop Live
-                                        </Button>
-                                    </ChakraBox>
-                                )
-                        }
-                    </Flex>
-                </CardHeader>
-                <CardBody>
-                    <OutputLiveBox
-                        output={output}
-                    />
-                </CardBody>
-            </Card>
-            <Card w={{lg:"40%", sm:'100%'}} ml={3}>
-                <CardHeader>
-                    <Heading>
-                        Errors reports
-                    </Heading>
-                    <Text>For every errors than can occurs</Text>
-                </CardHeader>
-                <CardBody>
-                    <Box
-                        p={"1%"}
-                        w={"100%"}
-                        h="25em"
-                        align={"center"}
-                    >
-                        <Stack spacing={6}>
-                            {
-                                lastErrorReport && lastErrorReport.time ?
-                                    (
-                                        <Button
-                                            colorScheme={"cyan"}
-                                            variant={"outline"}
-                                            onClick={() => {
-                                                setOutputType("err_output");
-                                                setIsSubmitErrO(true);
-                                                onOpen();
-                                            }}
-                                        >
-                                            Get more error reports
-                                        </Button>
-                                    )
-                                    : null
-                            }
-                            }
-                            {
-                                lastErrorReport && lastErrorReport.time ?
-                                    (
-                                        <ErrorBox
-                                            time={lastErrorReport.time}
-                                            traceback={lastErrorReport.traceback}
-                                        />
-                                    )
-                                    : null
-                            }
-                            {
-                                errorReportList !== 1 && isOpen ?
-                                    (
-                                        <ErrorReportModal
-                                            errorReportList={errorReportList}
-                                            isOpen={isOpen}
-                                            onClose={onClose}
-                                        >
-                                            {errorReportList.map((errorReport) => {
-                                                return (
-                                                    <Container key={errorReport.id}>
-                                                        <ErrorBox
-                                                            time={errorReport.time}
-                                                            traceback={errorReport.traceback}
-                                                        />
-                                                    </Container>
-                                                );
-                                            })}
-                                        </ErrorReportModal>
-                                    )
-                                    : null
-                            }
-                        </Stack>
-                    </Box>
-                </CardBody>
-            </Card>
-        </Flex>
+        // <Flex margin={"2%"} direction={{sm:'column', lg:'row'}}>
+        //     <Card flex={"1"}>
+        //         <CardHeader>
+        //             <Flex>
+        //                 <div>
+        //                     <Heading>
+        //                         Live Output
+        //                     </Heading>
+        //                     <Text>You want to see you're collect in live, it's possible</Text>
+        //                 </div>
+        //                 <Spacer />
+        //                 {
+        //                     !isSubmit ?
+        //                         (
+        //                             <Tooltip hasArrow label={"Can't use Live preview right now, item should be in Running mode"} isDisabled={itemStatus === "running"}>
+        //                                 <Button
+        //                                     colorScheme={"green"}
+        //                                     onClick={() => {
+        //                                         if (itemStatus === "running") {
+        //                                             setOutputType("output")
+        //                                             setIsSubmit(!isSubmit);
+        //                                         }
+        //                                     }}
+        //                                     ml={3}
+        //                                 >
+        //                                     Start Live
+        //                                 </Button>
+        //                             </Tooltip>
+        //                         ) : (
+        //                             <ChakraBox
+        //                                 animate={{
+        //                                     opacity: ["75%", "10%", "75%", "10%", "75%", "10%"],
+        //                                 }}
+        //                                 transition={{
+        //                                     duration:3,
+        //                                     repeat: Infinity,
+        //                                     repeatType: "loop",
+        //                                 }}
+        //                             >
+        //                                 <Button
+        //                                     colorScheme={"green"}
+        //                                     onClick={() => {
+        //                                         setOutputType("output")
+        //                                         setIsSubmit(!isSubmit);
+        //                                     }}
+        //                                     ml={3}
+        //                                 >
+        //                                     Stop Live
+        //                                 </Button>
+        //                             </ChakraBox>
+        //                         )
+        //                 }
+        //             </Flex>
+        //         </CardHeader>
+        //         <CardBody>
+        //             <OutputLiveBox
+        //                 output={output}
+        //             />
+        //         </CardBody>
+        //     </Card>
+        //     <Card w={{lg:"40%", sm:'100%'}} ml={3}>
+        //         <CardHeader>
+        //             <Heading>
+        //                 Errors reports
+        //             </Heading>
+        //             <Text>For every errors than can occurs</Text>
+        //         </CardHeader>
+        //         <CardBody>
+        //             <Box
+        //                 p={"1%"}
+        //                 w={"100%"}
+        //                 h="25em"
+        //                 align={"center"}
+        //             >
+        //                 <Stack spacing={6}>
+        //                     {
+        //                         lastErrorReport && lastErrorReport.time ?
+        //                             (
+        //                                 <Button
+        //                                     colorScheme={"cyan"}
+        //                                     variant={"outline"}
+        //                                     onClick={() => {
+        //                                         setOutputType("err_output");
+        //                                         setIsSubmitErrO(true);
+        //                                         onOpen();
+        //                                     }}
+        //                                 >
+        //                                     Get more error reports
+        //                                 </Button>
+        //                             )
+        //                             : null
+        //                     }
+        //                     }
+        //                     {
+        //                         lastErrorReport && lastErrorReport.time ?
+        //                             (
+        //                                 <ErrorBox
+        //                                     time={lastErrorReport.time}
+        //                                     traceback={lastErrorReport.traceback}
+        //                                 />
+        //                             )
+        //                             : null
+        //                     }
+        //                     {
+        //                         errorReportList !== 1 && isOpen ?
+        //                             (
+        //                                 <ErrorReportModal
+        //                                     errorReportList={errorReportList}
+        //                                     isOpen={isOpen}
+        //                                     onClose={onClose}
+        //                                 >
+        //                                     {errorReportList.map((errorReport) => {
+        //                                         return (
+        //                                             <Container key={errorReport.id}>
+        //                                                 <ErrorBox
+        //                                                     time={errorReport.time}
+        //                                                     traceback={errorReport.traceback}
+        //                                                 />
+        //                                             </Container>
+        //                                         );
+        //                                     })}
+        //                                 </ErrorReportModal>
+        //                             )
+        //                             : null
+        //                     }
+        //                 </Stack>
+        //             </Box>
+        //         </CardBody>
+        //     </Card>
+        // </Flex>
+        <></>
     )
 }
 

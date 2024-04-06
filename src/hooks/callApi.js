@@ -21,6 +21,8 @@ export function useApiCallToastResp(
 ) {
     const toast = useToast();
 
+    console.log(isSubmit)
+
     const toastPosition = useResponsiveValue({ defaultValue: 'top', base: 'top', xl: 'bottom' });
 
     useEffect(() => {
@@ -52,7 +54,7 @@ export function useApiCallToastResp(
             });
         setIsSubmit(false);
     }
-});
+}, [isSubmit]);
 }
 
 export function useApiCallDataResp(
@@ -69,9 +71,9 @@ export function useApiCallDataResp(
                     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                     setResponse(reqResponse);
                 })
-                .catch(() => {
+                .catch((error) => {
                     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                    setResponse('error');
+                    setResponse(error);
                 });
         }
     });

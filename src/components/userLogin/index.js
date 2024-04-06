@@ -14,12 +14,12 @@ import {
     Button,
     Fade,
     FormControl,
-    Link,
+    Link, Heading,
 } from "@chakra-ui/react";
 
 import hookSignIn from "../../hooks/auth/hookSignIn";
 
-const Login = () => {
+const UserLogin = () => {
     const [nameInput, setNameInput] = useState('');
     const [passwordInput, setPasswordInput] = useState('');
     const [show, setShow] = useState(false);
@@ -77,16 +77,16 @@ const Login = () => {
                                       onChange={(e) => handleInputChange(e, setPasswordInput)}
                                   />
                                   <InputRightElement>
-                                      <Button colorScheme={"cyan"} onClick={handleClick}>{show ? 'Hide' : 'Show'}</Button>
+                                      <Button colorScheme={"teal"} onClick={handleClick}>{show ? 'Hide' : 'Show'}</Button>
                                   </InputRightElement>
                               </InputGroup>
                               <NextLink href={"/user/reset"} passHref>
-                                <Link size="sm" color={"blue.500"} marginTop={"2%"}>Forgot your password ?</Link>
+                                <Button variant={"ghost"} colorScheme={"teal"} size="sm" marginTop={"2%"}>Forgot your password ?</Button>
                               </NextLink>
                           </InputGroup>
                           <Fade in={isValidForm()}>
                               <Button
-                                  colorScheme={"cyan"}
+                                  colorScheme={"teal"}
                                   size={"lg"}
                                   w={"100%"}
                                   isLoading={isSubmit}
@@ -104,4 +104,4 @@ const Login = () => {
     );
 }
 
-export default Login;
+export default UserLogin;

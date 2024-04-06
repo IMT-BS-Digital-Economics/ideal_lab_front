@@ -12,20 +12,12 @@ import Settings from "./settings";
 const UserPage = () => {
     return (
         <div>
-            <Tabs margin={"3%"} variant={"soft-rounded"} colorScheme={"cyan"}>
+            <Tabs margin={"3%"} variant={"soft-rounded"} colorScheme={"teal"}>
                 <TabList>
                     <Tab
-                        _hover={{
-                            bgColor: "cyan.100",
-                            color: "cyan.700"
-                        }}
                     >
                         Profile</Tab>
                     <Tab
-                        _hover={{
-                            bgColor: "cyan.100",
-                            color: "cyan.700"
-                        }}
                         ml={3}
                     >
                         Settings</Tab>

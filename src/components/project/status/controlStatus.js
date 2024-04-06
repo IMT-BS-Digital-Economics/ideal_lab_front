@@ -22,11 +22,9 @@ const ControlStatus = ({unique_id}) => {
         {
             status && status.data && status.data.status ? (
                 <>
-                    <Heading color={"teal"}>Handle Project Status</Heading>
-                    <Box bg={"teal"} borderRadius={"xl"} boxShadow={"xl"} h={"90%"} p={"2%"}>
-                        <Flex gap={2}>
-                            <Heading color={"white"} size={"lg"}>Current Status:</Heading>
-                            <Heading color={"teal.100"} size={"lg"}>{status.data.status}</Heading>
+                    <Box bg={"teal.100"} borderRadius={"xl"} boxShadow={"xl"} p={"1em"} bottom={0}>
+                        <Flex gap={2} direction={"column"}>
+                            <Text as="b" color={"teal"} size={"lg"}>{unique_id}</Text>
                         </Flex>
                         <Flex alignItems={"center"} direction={"column"} gap={2}>
                             <StatusBox unique_id={unique_id} itemStatus={status.data.status}/>

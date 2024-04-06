@@ -31,7 +31,7 @@ const ProfileMenu = ({username}) => {
     return (
         <div>
             <Menu>
-                <MenuButton as={Button} leftIcon={<FaUserAlt/>}>{username}</MenuButton>
+                <MenuButton as={Button} variant="ghost" colorScheme={"teal"} leftIcon={<FaUserAlt/>}>{username}</MenuButton>
                 <MenuList>
                     {
                         userData.role == "chief_access" ? (

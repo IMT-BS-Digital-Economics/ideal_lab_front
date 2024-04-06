@@ -14,6 +14,7 @@ const StatusButton = ({icon, name, setIsSubmit, setStatus}) => {
             size={"lg"}
             isRound
             aria-label={`action-${name}`}
+            _hover={{"bg": "teal.500", "color": "teal.100"}}
         />
     );
 }

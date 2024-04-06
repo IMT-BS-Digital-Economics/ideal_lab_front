@@ -4,7 +4,7 @@ import {Box, Text, Stack, Heading, Flex, Button, IconButton} from "@chakra-ui/re
 
 import {ArrowBackIcon} from "@chakra-ui/icons";
 
-import Projects from "../index";
+import ProjectsTab from "../index";
 import {useApiCallDataResp, useApiCallDataRespDelay} from "../../../hooks/callApi";
 import NextLink from "next/link";
 
@@ -21,16 +21,15 @@ const DisplayLog = ({unique_id, log_name}) => {
     )
 
     return (
-        <Stack direction={"row"} spacing={5}>
-            <Projects/>
-            <Box h={"90vh"} w={"100%"} borderRadius={"lg"} bg={"gray.200"} padding={"1%"}>
+        <Flex direction={"row"} gap={3} margin={"1%"}>
+            <Box flex="1" h={"100%"} w={"100%"} borderRadius={"lg"} bg={"gray.100"} padding={"1%"} boxShadow={"lg"}>
                 <Flex align={"center"} gap={3}>
                     <NextLink href={`/project/${unique_id}`}>
                         <IconButton colorScheme={"teal"} icon={<ArrowBackIcon/>}></IconButton>
                     </NextLink>
                     <Heading color={"teal"}>{log_name}</Heading>
                 </Flex>
-                <Box overflowY={"scroll"} mt={"1%"}>
+                <Box mt={"1%"} overflowY={"scroll"} h={"90%"}>
                     <Stack>
                     {content.data && content.data.details && Array.isArray(content.data.details)? (
                         content.data.details.map((element) => {
@@ -44,7 +43,7 @@ const DisplayLog = ({unique_id, log_name}) => {
                     </Stack>
                 </Box>
             </Box>
-        </Stack>
+        </Flex>
     );
 }
 

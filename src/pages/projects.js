@@ -1,12 +1,13 @@
 import NavBar from "../components/layout/navBar";
-import Projects from "../components/project";
+import ProjectsTab from "../components/project";
+import {Flex} from "@chakra-ui/react";
 
 const PageProjects = () => {
     return (
-        <>
+        <Flex direction={"column"} h={"100vh"} w={"100vw"}>
             <NavBar HomeButton={false}/>
-            <Projects/>
-        </>
+            <ProjectsTab isCreatePage={true}/>
+        </Flex>
     )
 }
 

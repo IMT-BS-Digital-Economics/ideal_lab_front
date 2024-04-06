@@ -35,7 +35,7 @@ const EditPassword = () => {
                 variant={"outline"}
                 size={"lg"}
                 w={"20%"}
-                colorScheme={"cyan"}
+                colorScheme={"teal"}
                 onClick={onOpen}
             >
                 Change Password

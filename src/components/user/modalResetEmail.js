@@ -29,7 +29,7 @@ const ModalResetEmail = () => {
         <>
             <Button
                 onClick={onOpen}
-                colorScheme={"cyan"}
+                colorScheme={"teal"}
                 size={"lg"}
                 w={"20%"}
             >

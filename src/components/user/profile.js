@@ -18,12 +18,12 @@ const Profile = () => {
         <div>
             <Center margin={"5%"}>
                 <Stack spacing={"3%"}>
-                    <FaUserCircle color={"#05C5EA"} size={"100%"}/>
+                    <FaUserCircle color={"teal"} size={"100%"}/>
                     {userData && userData.username ? (
-                        <Heading align={"center"}>{userData.username}</Heading>
+                        <Heading align={"center"} color={"teal"}>{userData.username}</Heading>
                     ) : null}
                     { userData && userData.email ? (
-                        <Text align={"center"}>{userData.email}</Text>
+                        <Text as="b" color="teal.200" align={"center"}>{userData.email}</Text>
                     ) : null}
                 </Stack>
             </Center>

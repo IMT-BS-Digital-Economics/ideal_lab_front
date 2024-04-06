@@ -1,15 +1,14 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
 
 import {FormControl, IconButton, Input, Stack, Tag, TagLabel, TagCloseButton} from "@chakra-ui/react";
-import {CheckIcon, CloseIcon, EditIcon} from "@chakra-ui/icons";
+import {CheckIcon} from "@chakra-ui/icons";
 import {useApiCallToastResp} from "../../../hooks/callApi";
+import UpdateModal from "./updateModal";
 
-const UpdateArgs = ({unique_id, content, isSubmit, setIsSubmit}) => {
+const UpdateArgs = ({unique_id, isOpen, onClose, content, isSubmit, setIsSubmit}) => {
     const [value, setValue] = useState('');
 
     const [args, setArgs] = useState(content)
-
-    console.log(isSubmit)
 
     useApiCallToastResp(
         'post',
@@ -19,27 +18,27 @@ const UpdateArgs = ({unique_id, content, isSubmit, setIsSubmit}) => {
         setIsSubmit
     )
 
-    return (
+    const EditForm = (
         <>
-        <FormControl align={"center"}>
-            <Stack direction={"row"}>
-                <Input
-                    placeholder={"Add an argument"}
-                    onChange={(e) => setValue(e.target.value)}
-                    variant={"filled"}
-                />
-                <IconButton
-                    aria-label={"Check-Icon"}
-                    icon={<CheckIcon/>}
-                    colorScheme={"teal"}
-                    onClick={() => {
-                        setArgs(args => [...args, value]);
-                        setValue('');
-                    }}
-                />
-            </Stack>
-        </FormControl>
-            <Stack direction={"row"}>
+            <FormControl align={"center"}>
+                <Stack direction={"row"}>
+                    <Input
+                        placeholder={"Add an argument"}
+                        onChange={(e) => setValue(e.target.value)}
+                        variant={"filled"}
+                    />
+                    <IconButton
+                        aria-label={"Check-Icon"}
+                        icon={<CheckIcon/>}
+                        colorScheme={"teal"}
+                        onClick={() => {
+                            setArgs(args => [...args, value]);
+                            setValue('');
+                        }}
+                    />
+                </Stack>
+            </FormControl>
+            <Stack direction={"row"} p={"1%"}>
                 {args.map((element) => {
                     return (
                         <Tag
@@ -47,7 +46,7 @@ const UpdateArgs = ({unique_id, content, isSubmit, setIsSubmit}) => {
                             key={element}
                             borderRadius={"full"}
                             variant='subtle'
-                            colorScheme={"cyan"}
+                            colorScheme={"teal"}
                         >
                             <TagLabel>{element}</TagLabel>
                             <TagCloseButton
@@ -58,6 +57,10 @@ const UpdateArgs = ({unique_id, content, isSubmit, setIsSubmit}) => {
                 })}
             </Stack>
         </>
+    )
+
+    return (
+        <UpdateModal setIsSubmit={setIsSubmit} Content={EditForm} isOpen={isOpen} onClose={onClose} Title={'Update arguments'}/>
     );
 }
 

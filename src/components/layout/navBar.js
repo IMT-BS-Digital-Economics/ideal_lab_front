@@ -4,11 +4,13 @@ import {
     Button,
     ButtonGroup,
     Flex,
-    Heading,
-    Spacer,
     Image,
+    Spacer,
+    Text,
     Icon,
 } from '@chakra-ui/react';
+
+import { FaCube } from "react-icons/fa6";
 
 import NextLink from 'next/link';
 
@@ -29,36 +31,24 @@ const NavBar = ({HomeButton = true}) => {
 
     return (
       <div>
-          <Flex margin={"1%"} alignItems={"center"}>
-              <Image
-                  position={"relative"}
-                  src={"https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Logo_Institut_Mines-Télécom.svg/1200px-Logo_Institut_Mines-Télécom.svg.png"}
-                  alt={"IMT-BS logo"}
-                  boxSize={"7%"}
-              />
-              {
-                  HomeButton ? (
-                      <>
-                          <NextLink href='/' passHref>
-                              <Button variant={""}>
-                                  <Heading size={{lg: "2xl", sm: "sm"}}>Dashboard</Heading>
-                              </Button>
-                          </NextLink>
-                      </>
-                  ) : null
-              }
+          <Flex alignItems={"center"} w={"100vw"} marginTop={0} marginLeft={0} padding={"0.5%"}>
+              <NextLink href='/' passHref>
+                  <Button leftIcon={<FaCube/>} colorScheme={"teal"} variant={"ghost"}>
+                      <Text><Text as={"span"} color={"teal.100"}>Ideal Lab</Text> Dashboard</Text>
+                  </Button>
+              </NextLink>
               <Spacer/>
-              <ButtonGroup size={"lg"}>
+              <ButtonGroup>
                   {!userData ?
-                      (<NextLink href={"/signIn"} passHref>
-                        <Button rightIcon={<IoArrowForward/>}  colorScheme={"cyan"}>Sign In</Button>
+                      (<NextLink href={"/login"} passHref>
+                        <Button rightIcon={<IoArrowForward/>}  variant="ghost" colorScheme={"teal"}>Login</Button>
                       </NextLink>)
                       :  (<ProfileMenu
                               username={userData.username}
                           />
                       )}
                   <NextLink href={"/about"} passHref>
-                      <Button leftIcon={<Icon as={IoInformation} color={"cyan.700"}/>}>About</Button>
+                      <Button variant="ghost" leftIcon={<Icon as={IoInformation} color={"teal"}/>}>About</Button>
                   </NextLink>
               </ButtonGroup>
           </Flex>
