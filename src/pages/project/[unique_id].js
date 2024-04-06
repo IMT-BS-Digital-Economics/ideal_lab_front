@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 
 import NavBar from "../../components/layout/navBar";
 import ProjectDashboard from "../../components/project/projectDashboard";
-import {Flex} from "@chakra-ui/react";
+import {Flex, ScaleFade} from "@chakra-ui/react";
 import {useEffect} from "react";
 
 

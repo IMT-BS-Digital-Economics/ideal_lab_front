@@ -21,8 +21,6 @@ export function useApiCallToastResp(
 ) {
     const toast = useToast();
 
-    console.log(isSubmit)
-
     const toastPosition = useResponsiveValue({ defaultValue: 'top', base: 'top', xl: 'bottom' });
 
     useEffect(() => {
