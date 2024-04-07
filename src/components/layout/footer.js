@@ -61,15 +61,13 @@ const Footer = () => {
                             About
                         </Button>
                     </NextLink>
-                    <NextLink href="/contact" passHref>
-                        <Button
-                            size="sm"
-                            variant={'ghost'}
-                            _hover={{ bg: 'teal.700', color: 'white' }}
-                        >
-                            Contact
-                        </Button>
-                    </NextLink>
+                    <Button
+                        size="sm"
+                        variant={'ghost'}
+                        _hover={{ bg: 'teal.700', color: 'white' }}
+                    >
+                        Contact
+                    </Button>
                 </Stack>
             </Container>
         </Box>

@@ -16,7 +16,7 @@ const ProjectPage = () => {
 
     return (
         <Flex direction={'column'} h={'100vh'} w={'100vw'}>
-            <NavBar HomeButton={false} />
+            <NavBar />
             <ProjectDashboard unique_id={unique_id} />
         </Flex>
     );

@@ -1,5 +1,4 @@
 import {
-    Heading,
     Modal,
     ModalCloseButton,
     ModalOverlay,
@@ -10,13 +9,14 @@ import {
     Button,
     Text,
     useDisclosure,
-    Input, Flex
-} from "@chakra-ui/react";
-import {useState} from "react";
-import {useApiCallToastResp} from "../../../hooks/callApi";
-import NextLink from "next/link";
+    Input,
+    Flex,
+} from '@chakra-ui/react';
+import { useState } from 'react';
+import { useApiCallToastResp } from '../../../hooks/callApi';
+import NextLink from 'next/link';
 
-const DeleteModal = ({unique_id}) => {
+const DeleteModal = ({ unique_id, isLargeScreen }) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     const confirmValue = `project/${unique_id}`;
@@ -31,37 +31,63 @@ const DeleteModal = ({unique_id}) => {
         {},
         isSubmit,
         setIsSubmit
-    )
+    );
 
     return (
         <>
-            <Button colorScheme="red" onClick={onOpen}>Delete project</Button>
+            <Button
+                width={{ base: '100%', xl: 'auto' }}
+                fontSize={{ base: 'sm', xl: 'lg' }} // Responsive font size
+                onClick={onOpen}
+                colorScheme="red"
+            >
+                {isLargeScreen ? 'Delete project' : 'Delete'}
+            </Button>
 
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
                     <ModalHeader>
-                            Delete project <Text as={"span"} color={"teal"}>{unique_id}</Text>
+                        Delete project{' '}
+                        <Text as={'span'} color={'teal'}>
+                            {unique_id}
+                        </Text>
                     </ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
-                       <Flex direction={"column"} gap={3}>
-                           <Text>To confirm deletion, type <Text as={"span"} color={"teal"}>{confirmValue}</Text> in the text input field.</Text>
-                           <Input value={inputValue} onChange={(e) => (setInputValue(e.target.value))}></Input>
-                       </Flex>
+                        <Flex direction={'column'} gap={3}>
+                            <Text>
+                                To confirm deletion, type{' '}
+                                <Text as={'span'} color={'teal'}>
+                                    {confirmValue}
+                                </Text>{' '}
+                                in the text input field.
+                            </Text>
+                            <Input
+                                value={inputValue}
+                                onChange={(e) => setInputValue(e.target.value)}
+                            ></Input>
+                        </Flex>
                     </ModalBody>
                     <ModalFooter>
                         <Button mr={3} onClick={onClose}>
                             Cancel
                         </Button>
                         <NextLink href={'/projects'} passHref>
-                            <Button onClick={() => setIsSubmit(true)} colorScheme="red" variant='solid' isDisabled={!(inputValue === confirmValue)}>Delete forever</Button>
+                            <Button
+                                onClick={() => setIsSubmit(true)}
+                                colorScheme="red"
+                                variant="solid"
+                                isDisabled={!(inputValue === confirmValue)}
+                            >
+                                Delete forever
+                            </Button>
                         </NextLink>
                     </ModalFooter>
                 </ModalContent>
             </Modal>
         </>
     );
-}
+};
 
 export default DeleteModal;
