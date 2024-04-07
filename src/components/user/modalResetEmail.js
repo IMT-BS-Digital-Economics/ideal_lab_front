@@ -1,64 +1,71 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 import {
     Button,
     Fade,
     FormControl,
-    FormLabel, Input, Modal,
+    FormLabel,
+    Input,
+    Modal,
     ModalBody,
     ModalCloseButton,
-    ModalContent, ModalFooter,
+    ModalContent,
+    ModalFooter,
     ModalHeader,
     ModalOverlay,
-    useDisclosure
-} from "@chakra-ui/react";
+    useDisclosure,
+} from '@chakra-ui/react';
 
-import hookEditMail from "../../hooks/user/hookEditMail";
+import hookEditMail from '../../hooks/user/hookEditMail';
 
 const ModalResetEmail = () => {
-    const { isOpen, onOpen, onClose} = useDisclosure();
+    const { isOpen, onOpen, onClose } = useDisclosure();
 
     const [isEdit, setIsEdit] = useState(false);
 
     const [newEmail, setNewEmail] = useState(null);
     const [confirmNewEmail, setConfirmNewEmail] = useState('');
 
-    hookEditMail({isEdit, setIsEdit, newEmail, setNewEmail});
+    hookEditMail({ isEdit, setIsEdit, newEmail, setNewEmail });
 
     return (
         <>
             <Button
                 onClick={onOpen}
-                colorScheme={"teal"}
-                size={"lg"}
-                w={"20%"}
+                colorScheme={'teal'}
+                size={'lg'}
+                w={{ base: '75%', xl: '20%' }}
             >
                 Change Email
             </Button>
             <Modal
                 isOpen={isOpen}
                 onClose={onClose}
-                motionPreset='slideInBottom'
+                motionPreset="slideInBottom"
             >
                 <ModalOverlay>
                     <ModalContent>
                         <ModalHeader>Change your email</ModalHeader>
-                        <ModalCloseButton/>
+                        <ModalCloseButton />
                         <ModalBody>
                             <FormControl>
                                 <FormLabel>Email</FormLabel>
                                 <Input
-                                    placeholder={"Email"}
-                                    type={"email"}
+                                    placeholder={'Email'}
+                                    type={'email'}
                                     value={newEmail}
-                                    onChange={(e) => setNewEmail(e.target.value)}
+                                    onChange={(e) =>
+                                        setNewEmail(e.target.value)
+                                    }
                                 />
                                 <FormLabel>Confirm Email</FormLabel>
                                 <Input
-                                    placeholder={"Confirm Email"}
-                                    type={"email"}
+                                    placeholder={'Confirm Email'}
+                                    type={'email'}
                                     value={confirmNewEmail}
-                                    onChange={(e) => setConfirmNewEmail(e.target.value)}
+                                    onChange={(e) =>
+                                        setConfirmNewEmail(e.target.value)
+                                    }
                                 />
                             </FormControl>
                         </ModalBody>
@@ -70,17 +77,14 @@ const ModalResetEmail = () => {
                                         onClose();
                                         setConfirmNewEmail('');
                                     }}
-                                    colorScheme={"cyan"}
-                                    variant={"ghost"}
+                                    colorScheme={'teal'}
+                                    variant={'ghost'}
                                     mr={3}
                                 >
                                     Submit
                                 </Button>
                             </Fade>
-                            <Button
-                                onClick={onClose}
-                                colorScheme={"cyan"}
-                            >
+                            <Button onClick={onClose} colorScheme={'teal'}>
                                 Close
                             </Button>
                         </ModalFooter>
@@ -89,6 +93,6 @@ const ModalResetEmail = () => {
             </Modal>
         </>
     );
-}
+};
 
 export default ModalResetEmail;
