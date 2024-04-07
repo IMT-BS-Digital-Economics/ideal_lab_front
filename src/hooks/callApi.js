@@ -21,38 +21,45 @@ export function useApiCallToastResp(
 ) {
     const toast = useToast();
 
-    const toastPosition = useResponsiveValue({ defaultValue: 'top', base: 'top', xl: 'bottom' });
+    const toastPosition = useResponsiveValue({
+        defaultValue: 'top',
+        base: 'top',
+        xl: 'bottom',
+    });
 
     useEffect(() => {
-    if (isSubmit) {
-        callApi(method, endpoint, data)
-            .then((response) => {
-                toast({
-                    position: toastPosition,
-                    status: 'success',
-                    duration: 9000,
-                    isClosable: true,
-                    title:
-                        response && response.data && response.data.message
-                            ? response.data.message
-                            : null,
+        if (isSubmit) {
+            callApi(method, endpoint, data)
+                .then((response) => {
+                    toast({
+                        position: toastPosition,
+                        status: 'success',
+                        duration: 9000,
+                        isClosable: true,
+                        title:
+                            response && response.data && response.data.message
+                                ? response.data.message
+                                : null,
+                    });
+                })
+                .catch((error) => {
+                    console.log(error);
+                    toast({
+                        status: 'error',
+                        duration: 9000,
+                        isClosable: true,
+                        title: 'Error',
+                        description:
+                            error.response &&
+                            error.response.data &&
+                            error.response.data.message
+                                ? error.response.data.message
+                                : 'We have a problem',
+                    });
                 });
-            })
-            .catch((error) => {
-                toast({
-                    status: 'error',
-                    duration: 9000,
-                    isClosable: true,
-                    title: 'Error',
-                    description:
-                        error.response && error.response.data && error.response.data.message
-                            ? error.response.data.message
-                            : 'An error occured',
-                });
-            });
-        setIsSubmit(false);
-    }
-}, [isSubmit]);
+            setIsSubmit(false);
+        }
+    }, [isSubmit]);
 }
 
 export function useApiCallDataResp(
@@ -66,11 +73,9 @@ export function useApiCallDataResp(
         if (!response) {
             callApi(method, endpoint, data)
                 .then((reqResponse) => {
-                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                     setResponse(reqResponse);
                 })
                 .catch((error) => {
-                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                     setResponse(error);
                 });
         }
@@ -88,18 +93,15 @@ export function useApiCallDataRespDelay(
     const fetchApi = useCallback(() => {
         callApi(method, endpoint, data)
             .then((reqResponse) => {
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 setResponse(reqResponse);
             })
             .catch(() => {
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 setResponse('error');
             });
     }, [method, endpoint, data]);
 
     useEffect(() => {
-        if (!response)
-            fetchApi()
+        if (!response) fetchApi();
 
         const intervalId = setInterval(fetchApi, delay);
 
