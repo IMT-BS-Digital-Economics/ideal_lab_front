@@ -1,48 +1,100 @@
-import { useState } from 'react';
-
+import {
+  Box,
+  VStack,
+  Heading,
+  Text,
+  HStack,
+  useColorModeValue,
+  Button,
+} from '@chakra-ui/react';
 import NextLink from 'next/link';
-
-import {Heading, Stack, Button, ScaleFade, Text} from '@chakra-ui/react';
-
-import AnimatedParticles from './animatedParticles';
-
+import { SunIcon } from '@chakra-ui/icons';
+import AnimatedParticles from './AnimatedParticles';
 import hookUserMe from '../../hooks/user/hookUserMe';
+import { useState } from 'react'; // Assuming this is a custom component
 
-import ServiceBox from '../service/serviceBox';
-
-const Landing = () => {
+const LandingPage = () => {
   const [userData, setUserData] = useState(false);
 
   hookUserMe({ userData, setUserData });
 
+  const bg = useColorModeValue('teal.50', 'teal.900');
+
   return (
     <>
-      <div>
+      <Box bg={bg} minHeight="100vh" position="relative">
         <AnimatedParticles />
-      </div>
-      <div style={{ marginTop: '25%' }}>
-        <Stack direction={'column'} spacing={5} align={'center'}>
-          <Heading size={'4xl'} color={'teal'}>
-            <Text as={"span"} color={"teal.100"}>Ideal Lab</Text> DashBoard
+        <VStack spacing={8} justify="center" align="center" minHeight="100vh">
+          <Heading
+            size="4xl"
+            fontWeight="bold"
+            color="teal.600"
+            textAlign="center"
+          >
+            <Text as="span" color="teal.400">
+              Ideal Lab
+            </Text>{' '}
+            Dashboard
           </Heading>
-          {userData ? (
-            <Stack direction={'row'} spacing={5} align={'center'}>
+
+          {userData && (
+            <HStack spacing={10}>
               <ServiceBox
-                name={'Projects'}
-                description={'Monitor you project'}
-                path={'/projects'}
+                name="Projects"
+                description="Monitor your project"
+                path="/projects"
               />
               <ServiceBox
-                name={'Repositories'}
-                description={'Manage repositories to use'}
-                path={'/repositories'}
+                name="Repositories"
+                description="Manage repositories to use"
+                path="/repositories"
               />
-            </Stack>
-          ) : null}
-        </Stack>
-      </div>
+            </HStack>
+          )}
+
+          <NextLink href="/about" passHref>
+            <Button
+              size="lg"
+              colorScheme="teal"
+              variant="solid"
+              shadow="md"
+              _hover={{ shadow: 'lg' }}
+            >
+              Learn More
+            </Button>
+          </NextLink>
+        </VStack>
+      </Box>
     </>
   );
 };
 
-export default Landing;
+const ServiceBox = ({ name, description, path }) => {
+  const bg = useColorModeValue('teal.100', 'teal.700');
+  const hoverBg = useColorModeValue('teal.200', 'teal.600');
+
+  return (
+    <NextLink href={path} passHref>
+      <Box
+        as="button"
+        borderRadius="lg"
+        bg={bg}
+        padding="6"
+        shadow="md"
+        _hover={{ bg: hoverBg }}
+        width="full"
+        textAlign="center"
+      >
+        <SunIcon color="teal.500" w={8} h={8} mb={4} />
+        <Heading size="md" color="teal.600">
+          {name}
+        </Heading>
+        <Text fontWeight="bold" color="gray.600">
+          {description}
+        </Text>
+      </Box>
+    </NextLink>
+  );
+};
+
+export default LandingPage;
