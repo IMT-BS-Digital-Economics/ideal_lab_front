@@ -1,8 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
-import axios from "axios";
+import axios from 'axios';
 
-const hookCollectExecutableList = ({executableList, setExecutableList, collect}) => {
+const hookCollectExecutableList = ({
+    executableList,
+    setExecutableList,
+    collect,
+}) => {
     const [collectCpy, setCollectCpy] = useState(null);
 
     useEffect(() => {
@@ -10,21 +14,24 @@ const hookCollectExecutableList = ({executableList, setExecutableList, collect})
             return axios({
                 method: 'get',
                 url: `${process.env.NEXT_PUBLIC_HOST}/project/${collect}`,
-                withCredentials: true
+                withCredentials: true,
             });
         }
 
         if (!collectCpy && collect) {
-            setCollectCpy(collectCpy)
+            setCollectCpy(collectCpy);
         }
 
-        if (executableList.length === 0 && collect || collectCpy != collect && collect) {
+        if (
+            (executableList.length === 0 && collect) ||
+            (collectCpy !== collect && collect)
+        ) {
             getExecutableList().then((response) => {
-                setExecutableList(response.data)
-            })
-            setCollectCpy(collect)
+                setExecutableList(response.data);
+            });
+            setCollectCpy(collect);
         }
-    })
-}
+    });
+};
 
 export default hookCollectExecutableList;

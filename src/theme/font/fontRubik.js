@@ -5,7 +5,7 @@ const rubik = Rubik({
     googleFont: {
         weights: ['400', '500', '700'],
     },
-    subsets: ['latin']
+    subsets: ['latin'],
 });
 
 export default rubik;

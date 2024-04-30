@@ -1,13 +1,13 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
-import { useRouter } from "next/router";
+import { useRouter } from 'next/router';
 
-import { useToast } from "@chakra-ui/react";
+import { useToast } from '@chakra-ui/react';
 
-import axios from "axios";
+import axios from 'axios';
 
-const hookSignOut = ({isSubmit, setIsSubmit}) => {
-    const toast = useToast()
+const hookSignOut = ({ isSubmit, setIsSubmit }) => {
+    const toast = useToast();
 
     const router = useRouter();
 
@@ -17,10 +17,10 @@ const hookSignOut = ({isSubmit, setIsSubmit}) => {
                 method: 'post',
                 url: `${process.env.NEXT_PUBLIC_HOST}/auth/signout`,
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
                 },
-                withCredentials: true
-            })
+                withCredentials: true,
+            });
         }
 
         if (isSubmit) {
@@ -29,7 +29,7 @@ const hookSignOut = ({isSubmit, setIsSubmit}) => {
                     title: response.data.detail,
                     status: 'success',
                     duration: 9000,
-                    isClosable: true
+                    isClosable: true,
                 });
                 router.push('/').then(() => {
                     router.reload();
@@ -38,6 +38,6 @@ const hookSignOut = ({isSubmit, setIsSubmit}) => {
             setIsSubmit(false);
         }
     });
-}
+};
 
 export default hookSignOut;

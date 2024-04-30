@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef } from 'react';
 
 import {
     MenuItem,
@@ -13,27 +13,37 @@ import {
     Text,
     Stack,
     useDisclosure,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
-import hookUpdateItemStatus from "../../hooks/items/update/hookUpdateItemStatus";
+import hookUpdateItemStatus from '../../hooks/items/update/hookUpdateItemStatus';
 
-const AlertUpdateStatus = ({icon, itemId, statusName, statusAbout, newStatus, setNeedUpdate}) => {
+const AlertUpdateStatus = ({
+    icon,
+    itemId,
+    statusName,
+    statusAbout,
+    newStatus,
+    setNeedUpdate,
+}) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     const cancelRef = useRef(null);
 
     const [submitUpdate, setSubmitUpdate] = useState('');
 
-    console.log(itemId)
+    console.log(itemId);
 
-    hookUpdateItemStatus(submitUpdate, setSubmitUpdate, itemId, newStatus, setNeedUpdate);
+    hookUpdateItemStatus(
+        submitUpdate,
+        setSubmitUpdate,
+        itemId,
+        newStatus,
+        setNeedUpdate
+    );
 
     return (
         <>
-            <MenuItem
-                icon={icon}
-                onClick={onOpen}
-            >
+            <MenuItem icon={icon} onClick={onOpen}>
                 {statusName}
             </MenuItem>
 
@@ -44,22 +54,22 @@ const AlertUpdateStatus = ({icon, itemId, statusName, statusAbout, newStatus, se
             >
                 <AlertDialogOverlay>
                     <AlertDialogContent>
-                        <AlertDialogHeader fontWeight={"bold"} fontSize={"lg"}>{statusName} Item</AlertDialogHeader>
+                        <AlertDialogHeader fontWeight={'bold'} fontSize={'lg'}>
+                            {statusName} Item
+                        </AlertDialogHeader>
                         <AlertDialogBody>
                             <Stack>
-                                <Heading fontSize={"md"}>
-                                    {statusAbout}
-                                </Heading>
+                                <Heading fontSize={'md'}>{statusAbout}</Heading>
                             </Stack>
                         </AlertDialogBody>
                         <AlertDialogFooter>
-                            <Stack direction={"row"} alignItems={"center"}>
+                            <Stack direction={'row'} alignItems={'center'}>
                                 <Text>
                                     Are you sure to {statusName} the item ?
                                 </Text>
                                 <Button
-                                    colorScheme={"cyan"}
-                                    variant={"outline"}
+                                    colorScheme={'cyan'}
+                                    variant={'outline'}
                                     onClick={() => {
                                         setSubmitUpdate(true);
                                         onClose();
@@ -78,6 +88,6 @@ const AlertUpdateStatus = ({icon, itemId, statusName, statusAbout, newStatus, se
             </AlertDialog>
         </>
     );
-}
+};
 
 export default AlertUpdateStatus;

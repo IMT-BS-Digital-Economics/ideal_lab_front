@@ -1,50 +1,72 @@
-import {useState} from "react";
+import { useState } from 'react';
 
-import {Box, Text, Stack, Heading, Flex, Button, IconButton} from "@chakra-ui/react";
+import NextLink from 'next/link';
 
-import {ArrowBackIcon} from "@chakra-ui/icons";
+import { Box, Text, Stack, Heading, Flex, IconButton } from '@chakra-ui/react';
 
-import ProjectsTab from "../index";
-import {useApiCallDataResp, useApiCallDataRespDelay} from "../../../hooks/callApi";
-import NextLink from "next/link";
+import { ArrowBackIcon } from '@chakra-ui/icons';
 
-const DisplayLog = ({unique_id, log_name}) => {
+import { useApiCallDataRespDelay } from '../../../hooks/callApi';
+
+const DisplayLog = ({ unique_id, log_name }) => {
     const [content, setContent] = useState(false);
 
     useApiCallDataRespDelay(
         'get',
-        `/projects/15a285b8-95c3-47a4-9d1e-921cb8a2477f/log/output_27-03-2024_22-26-38`,
+        `/projects/${unique_id}/log/${log_name}`,
         {},
         content,
         setContent,
         30000
-    )
+    );
 
     return (
-        <Flex direction={"row"} gap={3} margin={"1%"}>
-            <Box flex="1" h={"100%"} w={"100%"} borderRadius={"lg"} bg={"gray.100"} padding={"1%"} boxShadow={"lg"}>
-                <Flex align={"center"} gap={3}>
+        <Flex direction={'row'} gap={3} margin={'1%'}>
+            <Box
+                flex="1"
+                h={'100%'}
+                w={'100%'}
+                borderRadius={'lg'}
+                bg={'gray.100'}
+                padding={'1%'}
+                boxShadow={'lg'}
+            >
+                <Flex align={'center'} gap={3}>
                     <NextLink href={`/project/${unique_id}`}>
-                        <IconButton colorScheme={"teal"} icon={<ArrowBackIcon/>}></IconButton>
+                        <IconButton
+                            colorScheme={'teal'}
+                            icon={<ArrowBackIcon />}
+                            aria-label={'return-button'}
+                        />
                     </NextLink>
-                    <Heading color={"teal"}>{log_name}</Heading>
+                    <Heading color={'teal'}>{log_name}</Heading>
                 </Flex>
-                <Box mt={"1%"} overflowY={"scroll"} h={"90%"}>
+                <Box mt={'1%'} overflowY={'scroll'} h={'90%'}>
                     <Stack>
-                    {content.data && content.data.details && Array.isArray(content.data.details)? (
-                        content.data.details.map((element) => {
-                            return (
-                                <Box bg={"teal"} padding={"2%"} borderRadius={"xl"} boxShadow={"xl"}>
-                                    <Text as={"b"} color={"white"}>{element}</Text>
-                                </Box>
-                            );
-                        })
-                    ) : null}
+                        {content.data &&
+                        content.data.details &&
+                        Array.isArray(content.data.details)
+                            ? content.data.details.map((element, index) => {
+                                  return (
+                                      <Box
+                                          key={index}
+                                          bg={'teal'}
+                                          padding={'2%'}
+                                          borderRadius={'xl'}
+                                          boxShadow={'xl'}
+                                      >
+                                          <Text as={'b'} color={'white'}>
+                                              {element}
+                                          </Text>
+                                      </Box>
+                                  );
+                              })
+                            : null}
                     </Stack>
                 </Box>
             </Box>
         </Flex>
     );
-}
+};
 
-export default DisplayLog
+export default DisplayLog;

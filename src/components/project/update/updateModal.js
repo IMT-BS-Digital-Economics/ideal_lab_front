@@ -8,46 +8,41 @@ import {
     ModalHeader,
     ModalBody,
     ModalOverlay,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
-const UpdateModal = ({Title, Content, setIsSubmit, isOpen, onClose, noFooter=false}) => {
+const UpdateModal = ({
+    Title,
+    Content,
+    setIsSubmit,
+    isOpen,
+    onClose,
+    noFooter = false,
+}) => {
     return (
         <div>
-            <Modal
-                isOpen={isOpen}
-                onClose={onClose}
-            >
-                <ModalOverlay/>
+            <Modal isOpen={isOpen} onClose={onClose}>
+                <ModalOverlay />
                 <ModalContent>
-                    <ModalCloseButton/>
+                    <ModalCloseButton />
                     <ModalHeader>
-                        <Heading>
-                            {Title}
-                        </Heading>
+                        <Heading>{Title}</Heading>
                     </ModalHeader>
-                    <ModalBody>
-                        {Content}
-                    </ModalBody>
-                    {!noFooter ?
-                        (
-                            <ModalFooter>
-                                <Button
-                                    onClick={onClose}
-                                >
-                                    Cancel
-                                </Button>
-                                <Button
-                                    onClick={() => {
-                                        setIsSubmit(true);
-                                        onClose();
-                                    }}
-                                    ml={3}
-                                    color={"cyan.700"}
-                                >
-                                    Update
-                                </Button>
-                            </ModalFooter>
-                        ) : null}
+                    <ModalBody>{Content}</ModalBody>
+                    {!noFooter ? (
+                        <ModalFooter>
+                            <Button onClick={onClose}>Cancel</Button>
+                            <Button
+                                onClick={() => {
+                                    setIsSubmit(true);
+                                    onClose();
+                                }}
+                                ml={3}
+                                color={'cyan.700'}
+                            >
+                                Update
+                            </Button>
+                        </ModalFooter>
+                    ) : null}
                 </ModalContent>
             </Modal>
         </div>

@@ -55,11 +55,11 @@ const DisplayVariable = ({ name, value, header = false, unique_id }) => {
             {!edit ? (
                 <>
                     <Box
-                        w="100%"
                         p={'1em'}
                         bg={'gray.200'}
                         borderRadius={'2xl'}
                         align={'center'}
+                        minW={'20vw'}
                     >
                         <Text>{name}</Text>
                     </Box>
@@ -69,6 +69,8 @@ const DisplayVariable = ({ name, value, header = false, unique_id }) => {
                         bg={'gray.200'}
                         borderRadius={'2xl'}
                         align={'center'}
+                        minW={'30vw'}
+                        maxW={'30vw'}
                     >
                         <Text>{value}</Text>
                     </Box>
@@ -124,7 +126,7 @@ const DisplayEnvironmentVarModal = ({ unique_id, isLargeScreen }) => {
                 {isLargeScreen ? 'See environment variables' : 'See'}
             </Button>
 
-            <Modal isOpen={isOpen} onClose={onClose}>
+            <Modal isOpen={isOpen} onClose={onClose} size={'4xl'}>
                 <ModalOverlay />
                 <ModalContent>
                     <ModalHeader>
@@ -151,13 +153,15 @@ const DisplayEnvironmentVarModal = ({ unique_id, isLargeScreen }) => {
                         >
                             {environmentVars !== undefined &&
                                 Array.isArray(environmentVars.data) &&
-                                environmentVars.data.map((element) => {
+                                environmentVars.data.map((element, index) => {
                                     return (
-                                        <DisplayVariable
-                                            name={element.key}
-                                            value={element.value}
-                                            unique_id={unique_id}
-                                        />
+                                        <Flex key={index}>
+                                            <DisplayVariable
+                                                name={element.key}
+                                                value={element.value}
+                                                unique_id={unique_id}
+                                            />
+                                        </Flex>
                                     );
                                 })}
                             {environmentVars !== undefined &&

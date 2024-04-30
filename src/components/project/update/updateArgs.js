@@ -1,67 +1,92 @@
-import {useEffect, useState} from "react";
+import { useState } from 'react';
 
-import {FormControl, IconButton, Input, Stack, Tag, TagLabel, TagCloseButton} from "@chakra-ui/react";
-import {CheckIcon} from "@chakra-ui/icons";
-import {useApiCallToastResp} from "../../../hooks/callApi";
-import UpdateModal from "./updateModal";
+import {
+    FormControl,
+    IconButton,
+    Input,
+    Stack,
+    Tag,
+    TagLabel,
+    TagCloseButton,
+} from '@chakra-ui/react';
+import { CheckIcon } from '@chakra-ui/icons';
+import { useApiCallToastResp } from '../../../hooks/callApi';
+import UpdateModal from './updateModal';
 
-const UpdateArgs = ({unique_id, isOpen, onClose, content, isSubmit, setIsSubmit}) => {
+const UpdateArgs = ({
+    unique_id,
+    isOpen,
+    onClose,
+    content,
+    isSubmit,
+    setIsSubmit,
+}) => {
     const [value, setValue] = useState('');
 
-    const [args, setArgs] = useState(content)
+    const [args, setArgs] = useState(content);
 
     useApiCallToastResp(
         'post',
         `/projects/${unique_id}/update/arguments`,
-        {"arguments": args},
+        { arguments: args },
         isSubmit,
         setIsSubmit
-    )
+    );
 
     const EditForm = (
         <>
-            <FormControl align={"center"}>
-                <Stack direction={"row"}>
+            <FormControl align={'center'}>
+                <Stack direction={'row'}>
                     <Input
-                        placeholder={"Add an argument"}
+                        placeholder={'Add an argument'}
                         onChange={(e) => setValue(e.target.value)}
-                        variant={"filled"}
+                        variant={'filled'}
                     />
                     <IconButton
-                        aria-label={"Check-Icon"}
-                        icon={<CheckIcon/>}
-                        colorScheme={"teal"}
+                        aria-label={'Check-Icon'}
+                        icon={<CheckIcon />}
+                        colorScheme={'teal'}
                         onClick={() => {
-                            setArgs(args => [...args, value]);
+                            setArgs((args) => [...args, value]);
                             setValue('');
                         }}
                     />
                 </Stack>
             </FormControl>
-            <Stack direction={"row"} p={"1%"}>
+            <Stack direction={'row'} p={'1%'}>
                 {args.map((element) => {
                     return (
                         <Tag
-                            size={"md"}
+                            size={'md'}
                             key={element}
-                            borderRadius={"full"}
-                            variant='subtle'
-                            colorScheme={"teal"}
+                            borderRadius={'full'}
+                            variant="subtle"
+                            colorScheme={'teal'}
                         >
                             <TagLabel>{element}</TagLabel>
                             <TagCloseButton
-                                onClick={() => {setArgs(args.filter((args) => args !== element))}}
+                                onClick={() => {
+                                    setArgs(
+                                        args.filter((args) => args !== element)
+                                    );
+                                }}
                             />
                         </Tag>
                     );
                 })}
             </Stack>
         </>
-    )
+    );
 
     return (
-        <UpdateModal setIsSubmit={setIsSubmit} Content={EditForm} isOpen={isOpen} onClose={onClose} Title={'Update arguments'}/>
+        <UpdateModal
+            setIsSubmit={setIsSubmit}
+            Content={EditForm}
+            isOpen={isOpen}
+            onClose={onClose}
+            Title={'Update arguments'}
+        />
     );
-}
+};
 
-export default UpdateArgs
+export default UpdateArgs;

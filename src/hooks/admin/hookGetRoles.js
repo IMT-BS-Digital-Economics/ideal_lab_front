@@ -1,23 +1,23 @@
-import {useEffect} from "react";
+import { useEffect } from 'react';
 
-import axios from "axios";
+import axios from 'axios';
 
-const hookGetRoles = ({roles, setRoles}) => {
+const hookGetRoles = ({ roles, setRoles }) => {
     useEffect(() => {
         async function getRoles() {
             return axios({
-                method:'get',
+                method: 'get',
                 url: `${process.env.NEXT_PUBLIC_HOST}/admin/roles`,
-                withCredentials: true
+                withCredentials: true,
             });
         }
 
         if (!roles) {
             getRoles().then((response) => {
-                setRoles(response.data)
-            })
+                setRoles(response.data);
+            });
         }
     });
-}
+};
 
 export default hookGetRoles;

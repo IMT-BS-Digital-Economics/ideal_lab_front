@@ -1,27 +1,33 @@
-import {useState} from "react";
+import { useState } from 'react';
 
-import {Flex, IconButton, Stack, Tag, TagCloseButton, TagLabel, Text, useDisclosure} from "@chakra-ui/react";
-import {FaPen} from "react-icons/fa6";
-import UpdateModal from "../../update/updateModal";
-import UpdateArgs from "../../update/updateArgs";
+import {
+    Flex,
+    IconButton,
+    Stack,
+    Tag,
+    TagLabel,
+    useDisclosure,
+} from '@chakra-ui/react';
+import { FaPen } from 'react-icons/fa6';
+import UpdateArgs from '../../update/updateArgs';
 
-const EditableArguments = ({unique_id, value}) => {
+const EditableArguments = ({ unique_id, value }) => {
     const [isSubmit, setIsSubmit] = useState(false);
 
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     return (
         <>
-            <Flex direction={"column"} align={"center"}>
-                <Stack direction={"row"} p={"1%"}>
+            <Flex direction={'column'} align={'center'}>
+                <Stack direction={'row'} p={'1%'}>
                     {value.map((element) => {
                         return (
                             <Tag
-                                size={"md"}
+                                size={'md'}
                                 key={element}
-                                borderRadius={"full"}
-                                variant='subtle'
-                                colorScheme={"teal"}
+                                borderRadius={'full'}
+                                variant="subtle"
+                                colorScheme={'teal'}
                             >
                                 <TagLabel>{element}</TagLabel>
                             </Tag>
@@ -32,17 +38,25 @@ const EditableArguments = ({unique_id, value}) => {
                     <IconButton
                         isRound={true}
                         aria-label="Edit value"
-                        icon={<FaPen/>}
-                        colorScheme='teal'
-                        size={"lg"}
+                        icon={<FaPen />}
+                        colorScheme="teal"
+                        size={'lg'}
                         onClick={onOpen}
-                        justifyContent="center" alignItems="center"
+                        justifyContent="center"
+                        alignItems="center"
                     />
                 </Flex>
             </Flex>
-            <UpdateArgs isOpen={isOpen} onClose={onClose} isSubmit={isSubmit} setIsSubmit={setIsSubmit} content={value} unique_id={unique_id}/>
+            <UpdateArgs
+                isOpen={isOpen}
+                onClose={onClose}
+                isSubmit={isSubmit}
+                setIsSubmit={setIsSubmit}
+                content={value}
+                unique_id={unique_id}
+            />
         </>
     );
-}
+};
 
 export default EditableArguments;

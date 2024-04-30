@@ -40,8 +40,6 @@ const Repository = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [title, setTitle] = useState('');
 
-    console.log(newRepo);
-
     useApiCallDataResp(
         'get',
         '/repositories',
@@ -88,7 +86,7 @@ const Repository = () => {
     };
 
     useEffect(() => {
-        if (addNewRepo == false) {
+        if (addNewRepo === false) {
             setNewRepo({ user: '', token: '', project: '', version: '' });
         }
     }, [addNewRepo]);

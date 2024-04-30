@@ -4,12 +4,14 @@ import {
     FormControl,
     FormLabel,
     Input,
-    Stack
-} from "@chakra-ui/react";
-import {useState} from "react";
-import hookCreateUser from "../../hooks/admin/hookCreateUser";
+    Stack,
+    InputRightElement,
+    InputGroup,
+} from '@chakra-ui/react';
+import { useState } from 'react';
+import hookCreateUser from '../../hooks/admin/hookCreateUser';
 
-const UserForm = ({onClose}) => {
+const UserForm = ({ onClose }) => {
     const [userEmail, setUserEmail] = useState();
     const [userName, setUserName] = useState();
     const [passWord, setPassWord] = useState();
@@ -17,23 +19,26 @@ const UserForm = ({onClose}) => {
     const [isSubmit, setIsSubmit] = useState(false);
 
     const [show, setShow] = useState(false);
-    const handleClick = () => setShow(!show)
+
+    const handleClick = () => {
+        setShow(!show);
+    };
 
     const handleInputChange = (e, setter) => {
-        setter(e.target.value)
-    }
+        setter(e.target.value);
+    };
 
-    const isValidForm = () => userEmail && userName && passWord
-    
-    hookCreateUser({userEmail, userName, passWord, isSubmit, setIsSubmit})
+    const isValidForm = () => userEmail && userName && passWord;
+
+    hookCreateUser({ userEmail, userName, passWord, isSubmit, setIsSubmit });
 
     return (
-        <Stack spacing={"3%"} direction={"column"}>
+        <Stack spacing={'3%'} direction={'column'}>
             <FormControl>
                 <FormLabel>Email</FormLabel>
                 <Input
-                    placeholder={"Email"}
-                    type={"email"}
+                    placeholder={'Email'}
+                    type={'email'}
                     value={userEmail}
                     onChange={(e) => handleInputChange(e, setUserEmail)}
                 />
@@ -41,40 +46,46 @@ const UserForm = ({onClose}) => {
             <FormControl>
                 <FormLabel>Username</FormLabel>
                 <Input
-                    placeholder={"Username"}
+                    placeholder={'Username'}
                     value={userName}
                     onChange={(e) => handleInputChange(e, setUserName)}
-                    m={"1%"}
+                    m={'1%'}
                 />
             </FormControl>
             <FormControl>
                 <FormLabel>Password</FormLabel>
-                <Input
-                    placeholder={"Password"}
-                    type={show ? 'text' : 'password'}
-                    value={passWord}
-                    onChange={(e) => handleInputChange(e, setPassWord)}
-                    m={"1%"}
-                />
+                <InputGroup>
+                    <Input
+                        placeholder={'Password'}
+                        type={show ? 'text' : 'password'}
+                        value={passWord}
+                        onChange={(e) => handleInputChange(e, setPassWord)}
+                    />
+                    <InputRightElement>
+                        <Button colorScheme={'teal'} onClick={handleClick}>
+                            {show ? 'Hide' : 'Show'}
+                        </Button>
+                    </InputRightElement>
+                </InputGroup>
             </FormControl>
             <Fade in={isValidForm()}>
                 <Button
-                    color={"cyan.700"}
-                    size={"lg"}
-                    w={"100%"}
+                    color={'cyan.700'}
+                    size={'lg'}
+                    w={'100%'}
                     isLoading={isSubmit}
-                    loadingText={"Submitting"}
+                    loadingText={'Submitting'}
                     onClick={() => {
-                        setIsSubmit(true)
+                        setIsSubmit(true);
                         onClose();
                     }}
-                    m={"1%"}
+                    m={'1%'}
                 >
                     Submit
                 </Button>
             </Fade>
         </Stack>
     );
-}
+};
 
 export default UserForm;

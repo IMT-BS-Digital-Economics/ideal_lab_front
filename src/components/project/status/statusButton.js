@@ -1,7 +1,6 @@
-import {IoPlay} from "react-icons/io5";
-import {IconButton} from "@chakra-ui/react";
+import { IconButton } from '@chakra-ui/react';
 
-const StatusButton = ({icon, name, setIsSubmit, setStatus}) => {
+const StatusButton = ({ icon, name, setIsSubmit, setStatus }) => {
     return (
         <IconButton
             icon={icon}
@@ -9,14 +8,14 @@ const StatusButton = ({icon, name, setIsSubmit, setStatus}) => {
                 setStatus(name);
                 setIsSubmit(true);
             }}
-            color={"teal"}
-            bg={"teal.100"}
-            size={"lg"}
+            color={'teal'}
+            bg={'teal.100'}
+            size={'lg'}
             isRound
             aria-label={`action-${name}`}
-            _hover={{"bg": "teal.500", "color": "teal.100"}}
+            _hover={{ bg: 'teal.500', color: 'teal.100' }}
         />
     );
-}
+};
 
 export default StatusButton;

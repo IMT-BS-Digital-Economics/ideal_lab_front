@@ -1,12 +1,10 @@
-import {Button, FormLabel, Icon, useDisclosure} from "@chakra-ui/react";
-import hookUpdateItemParam from "../../../hooks/items/update/hookUpdateItemParam";
-import {IoTime} from "react-icons/io5";
-import UpdateModal from "../../item/modal/updateModal";
-import SelectTime from "../../../utils/item/selectTime";
-import {useApiCallToastResp} from "../../../hooks/callApi";
-import {useEffect, useState} from "react";
+import { FormLabel, useDisclosure } from '@chakra-ui/react';
+import UpdateModal from '../../project/modal/updateModal';
+import SelectTime from '../../../utils/item/selectTime';
+import { useApiCallToastResp } from '../../../hooks/callApi';
+import { useEffect, useState } from 'react';
 
-const UpdateTime = ({unique_id, toggleLayout}) => {
+const UpdateTime = ({ unique_id, toggleLayout }) => {
     const [hour, setHour] = useState('');
     const [minutes, setMinutes] = useState('');
 
@@ -23,22 +21,19 @@ const UpdateTime = ({unique_id, toggleLayout}) => {
     useApiCallToastResp(
         'post',
         `/projects/${unique_id}/update/start_time`,
-        {"start_time": `${hour}:${minutes}`},
+        { start_time: `${hour}:${minutes}` },
         isSubmit,
         setIsSubmit
-    )
+    );
 
     return (
         <>
             <UpdateModal
-                Title={"Update Edit time"}
+                Title={'Update Edit time'}
                 Content={
                     <div>
                         <FormLabel>Time to start</FormLabel>
-                        <SelectTime
-                            setHour={setHour}
-                            setMinutes={setMinutes}
-                        />
+                        <SelectTime setHour={setHour} setMinutes={setMinutes} />
                     </div>
                 }
                 setIsSubmit={setIsSubmit}
@@ -47,6 +42,6 @@ const UpdateTime = ({unique_id, toggleLayout}) => {
             />
         </>
     );
-}
+};
 
 export default UpdateTime;

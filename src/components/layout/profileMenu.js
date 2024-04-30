@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 import {
     Button,
@@ -6,51 +6,52 @@ import {
     MenuButton,
     MenuGroup,
     MenuItem,
-    MenuList
-} from "@chakra-ui/react";
+    MenuList,
+} from '@chakra-ui/react';
 
-import NextLink from "next/link";
+import NextLink from 'next/link';
 
-import { FaUserAlt } from "react-icons/fa";
+import { FaUserAlt } from 'react-icons/fa';
 
-import hookSignOut from "../../hooks/auth/hookSignOut";
-import hookUserMe from "../../hooks/user/hookUserMe";
+import hookSignOut from '../../hooks/auth/hookSignOut';
+import hookUserMe from '../../hooks/user/hookUserMe';
 
-const ProfileMenu = ({username}) => {
+const ProfileMenu = ({ username }) => {
     const [isSubmit, setIsSubmit] = useState(false);
 
     const [userData, setUserData] = useState(false);
 
-    hookSignOut({isSubmit, setIsSubmit});
+    hookSignOut({ isSubmit, setIsSubmit });
 
     hookUserMe({
         userData,
-        setUserData
+        setUserData,
     });
 
     return (
         <div>
             <Menu>
-                <MenuButton as={Button} variant="ghost" colorScheme={"teal"} leftIcon={<FaUserAlt/>}>{username}</MenuButton>
+                <MenuButton
+                    as={Button}
+                    variant="ghost"
+                    colorScheme={'teal'}
+                    leftIcon={<FaUserAlt />}
+                >
+                    {username}
+                </MenuButton>
                 <MenuList>
-                    {
-                        userData.role == "chief_access" ? (
-                            <MenuGroup title={"Admin"}>
-                                <NextLink href={"/admin"} passHref>
-                                    <MenuItem>
-                                        Manage users
-                                    </MenuItem>
-                                </NextLink>
-                            </MenuGroup>
-                        ) : (
-                            <></>
-                        )
-                    }
-                    <MenuGroup title={"Profile"}>
-                        <NextLink href={"/user"} passHref>
-                            <MenuItem>
-                                My Account
-                            </MenuItem>
+                    {userData.role === 'chief_access' ? (
+                        <MenuGroup title={'Admin'}>
+                            <NextLink href={'/admin'} passHref>
+                                <MenuItem>Manage users</MenuItem>
+                            </NextLink>
+                        </MenuGroup>
+                    ) : (
+                        <></>
+                    )}
+                    <MenuGroup title={'Profile'}>
+                        <NextLink href={'/user'} passHref>
+                            <MenuItem>My Account</MenuItem>
                         </NextLink>
                         <MenuItem onClick={() => setIsSubmit(true)}>
                             Sign Out
@@ -59,8 +60,7 @@ const ProfileMenu = ({username}) => {
                 </MenuList>
             </Menu>
         </div>
-    )
-}
+    );
+};
 
 export default ProfileMenu;
-

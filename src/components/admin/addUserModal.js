@@ -5,11 +5,11 @@ import {
     ModalHeader,
     ModalBody,
     ModalCloseButton,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
-import UserForm from "./userForm";
+import UserForm from './userForm';
 
-const AddUserModal = ({isOpen, onClose}) => {
+const AddUserModal = ({ isOpen, onClose }) => {
     return (
         <Modal isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
@@ -17,13 +17,11 @@ const AddUserModal = ({isOpen, onClose}) => {
                 <ModalHeader>Add a user</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody>
-                    <UserForm
-                        onClose={onClose}
-                    />
+                    <UserForm onClose={onClose} />
                 </ModalBody>
             </ModalContent>
         </Modal>
     );
-}
+};
 
 export default AddUserModal;

@@ -1,13 +1,13 @@
-import { useRouter } from "next/router";
+import { useRouter } from 'next/router';
 
-import {useToast} from "@chakra-ui/react";
+import { useToast } from '@chakra-ui/react';
 
-import axios from "axios";
+import axios from 'axios';
 
-const hookDeleteUser = ({isDelete}) => {
+const hookDeleteUser = ({ isDelete }) => {
     const router = useRouter();
 
-    const toast = useToast()
+    const toast = useToast();
 
     async function deleteUser() {
         return axios({
@@ -17,21 +17,21 @@ const hookDeleteUser = ({isDelete}) => {
                 'Content-Type': 'application/json',
             },
             withCredentials: true,
-        })
+        });
     }
 
     if (isDelete) {
         deleteUser().then(() => {
-            router.push('/')
+            router.push('/');
             toast({
-                title: "Account deleted !",
+                title: 'Account deleted !',
                 description: "You're account has been deleted",
-                status: "success",
+                status: 'success',
                 duration: 9000,
-                isClosable: true
-            })
+                isClosable: true,
+            });
         });
     }
-}
+};
 
 export default hookDeleteUser;

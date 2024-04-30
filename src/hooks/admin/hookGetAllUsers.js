@@ -1,23 +1,23 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
-import axios from "axios";
+import axios from 'axios';
 
-const hookGetAllUsers = ({usersData, setUsersData}) => {
+const hookGetAllUsers = ({ usersData, setUsersData }) => {
     useEffect(() => {
         async function getAllUsers() {
             return axios({
-                method:'get',
+                method: 'get',
                 url: `${process.env.NEXT_PUBLIC_HOST}/admin/users`,
-                withCredentials: true
+                withCredentials: true,
             });
         }
 
         if (!usersData) {
             getAllUsers().then((response) => {
-                setUsersData(response.data)
-            })
+                setUsersData(response.data);
+            });
         }
     });
-}
+};
 
 export default hookGetAllUsers;

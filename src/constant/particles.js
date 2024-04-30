@@ -1,7 +1,7 @@
 export const landingPageParticles = {
     background: {
         color: {
-            value: "#00000",
+            value: '#00000',
         },
     },
     fullScreen: {
@@ -12,9 +12,9 @@ export const landingPageParticles = {
         events: {
             onClick: {
                 enable: true,
-                mode: "repulse",
+                mode: 'repulse',
             },
-            resize: true
+            resize: true,
         },
         modes: {
             repulse: {
@@ -22,21 +22,21 @@ export const landingPageParticles = {
                 size: 0,
                 duration: 2,
                 opacity: 0,
-                speed: 6
+                speed: 6,
             },
         },
     },
     particles: {
         color: {
-            value: "#0B87A0",
+            value: '#0B87A0',
         },
         collisions: {
             enable: true,
         },
         move: {
-            direction: "none",
+            direction: 'none',
             enable: true,
-            outModes: "out",
+            outModes: 'out',
             random: true,
             speed: 1,
             straight: false,
@@ -44,8 +44,8 @@ export const landingPageParticles = {
             attract: {
                 enable: false,
                 rotateX: 600,
-                rotateY: 600
-            }
+                rotateY: 600,
+            },
         },
         number: {
             density: {
@@ -58,15 +58,15 @@ export const landingPageParticles = {
             value: 0.5,
         },
         shape: {
-            type: "circle",
+            type: 'circle',
             stroke: {
                 width: 0,
-                color: "#000000"
-            }
+                color: '#000000',
+            },
         },
         size: {
             value: { min: 1, max: 5 },
         },
     },
     detectRetina: true,
-}
+};

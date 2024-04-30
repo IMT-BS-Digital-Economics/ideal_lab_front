@@ -9,7 +9,7 @@ import {
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import { SunIcon } from '@chakra-ui/icons';
-import AnimatedParticles from './AnimatedParticles';
+import AnimatedParticles from './animatedParticles';
 import hookUserMe from '../../hooks/user/hookUserMe';
 import { useState } from 'react'; // Assuming this is a custom component
 
