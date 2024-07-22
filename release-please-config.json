@@ -1,7 +1,7 @@
 {
     "release-type": "simple",
     "tag-separator": "@",
-    "include-component-in-tag": true,
+    "include-component-in-tag": false,
     "packages": {
       ".": {
         "package-name": "ideal-lab-dashboard-front"
