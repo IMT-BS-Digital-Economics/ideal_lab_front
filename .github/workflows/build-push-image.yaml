@@ -28,7 +28,9 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          tags: ${{ github.ref_name }}
+          images: ideal-lab-dashboard-front
+          tags: |
+            type=ref,event=tag
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
