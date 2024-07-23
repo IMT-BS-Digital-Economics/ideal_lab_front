@@ -6,6 +6,10 @@ on:
       - 'v*.*.*'
   workflow_dispatch:
 
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: IMT-BS-Digital-Economics/${{ github.repository }}
+
 jobs:
   build-push:
     name: Build and Push Docker image
@@ -23,6 +27,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GH_SECRET }}
+          IMAGE_NAME: thiswallz/tsg-backend
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
