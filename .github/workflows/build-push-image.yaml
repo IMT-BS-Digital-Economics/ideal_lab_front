@@ -34,11 +34,9 @@ jobs:
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
-        env:
-          DOCKER_BUILD_NO_SUMMARY: true
         with:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ghcr.io/${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
