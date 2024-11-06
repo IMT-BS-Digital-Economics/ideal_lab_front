@@ -1,7 +1,8 @@
 import { useState } from 'react';
 
-import { Box, keyframes, Tooltip } from '@chakra-ui/react';
+import { Box, Tooltip } from '@chakra-ui/react';
 import { useApiCallDataRespDelay } from '../../../hooks/callApi';
+import { keyframes } from '@emotion/react';
 
 const pulseAnimation = keyframes`
   0% { transform: scale(1); opacity: 1; }
