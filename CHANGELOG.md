@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/IMT-BS-Digital-Economics/ideal_lab_front/compare/v0.1.1...v0.1.2) (2024-11-06)
+
+
+### Bug Fixes
+
+* import of keyframes ([01df31c](https://github.com/IMT-BS-Digital-Economics/ideal_lab_front/commit/01df31c1656ceb210f8c7add7d51fb295c7abf3a))
+
 ## [0.1.1](https://github.com/IMT-BS-Digital-Economics/ideal_lab_front/compare/v0.1.0...v0.1.1) (2024-11-06)
 
 
