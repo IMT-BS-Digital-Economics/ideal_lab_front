@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.1](https://github.com/IMT-BS-Digital-Economics/ideal_lab_front/compare/v0.1.0...v0.1.1) (2024-11-06)
+
+
+### Bug Fixes
+
+* issue with image pulling ([0755572](https://github.com/IMT-BS-Digital-Economics/ideal_lab_front/commit/0755572177c0371c8615ff4914fcab6984aace28))
+* not useful next variable ([5bd4275](https://github.com/IMT-BS-Digital-Economics/ideal_lab_front/commit/5bd42751b858d10a4998634858c5b07fa20e95ed))
+
 ## [0.1.0](https://github.com/IMT-BS-Digital-Economics/ideal_lab_front/compare/v0.0.1...v0.1.0) (2024-07-23)
 
 
