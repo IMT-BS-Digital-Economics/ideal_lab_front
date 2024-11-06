@@ -18,7 +18,7 @@ const hookUpdateItemParam = (
         async function updateItemParam() {
             return axios({
                 method: 'post',
-                url: `${process.env.NEXT_PUBLIC_HOST}/items/${itemId}/edit/${itemParam}`,
+                url: `api/items/${itemId}/edit/${itemParam}`,
                 headers: {
                     'Content-Type': 'application/json',
                 },

@@ -10,7 +10,7 @@ const hookGetItem = (setItem, itemId) => {
         async function getItem() {
             return axios({
                 method: 'get',
-                url: `${process.env.NEXT_PUBLIC_HOST}/items/${itemId}`,
+                url: `api/items/${itemId}`,
                 withCredentials: true,
             });
         }

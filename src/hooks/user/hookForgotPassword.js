@@ -20,7 +20,7 @@ const hookForgotPassword = ({ isSubmit, setIsSubmit, email }) => {
         async function forgotPassword() {
             return axios({
                 method: 'post',
-                url: `${process.env.NEXT_PUBLIC_HOST}/user/forgot_password`,
+                url: `api/user/forgot_password`,
                 headers: {
                     'Content-Type': 'application/json',
                 },

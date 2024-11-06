@@ -15,7 +15,7 @@ const hookSignOut = ({ isSubmit, setIsSubmit }) => {
         async function signOutUser() {
             return axios({
                 method: 'post',
-                url: `${process.env.NEXT_PUBLIC_HOST}/auth/signout`,
+                url: `api/auth/signout`,
                 headers: {
                     'Content-Type': 'application/json',
                 },

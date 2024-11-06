@@ -22,7 +22,7 @@ const hookSignUp = ({
         async function signUp() {
             return axios({
                 method: 'post',
-                url: `${process.env.NEXT_PUBLIC_HOST}/auth/signup`,
+                url: `api/auth/signup`,
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -33,7 +33,7 @@ const hookSignUp = ({
         async function signIn() {
             return axios({
                 method: 'post',
-                url: `${process.env.NEXT_PUBLIC_HOST}/auth/signin`,
+                url: `api/auth/signin`,
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },

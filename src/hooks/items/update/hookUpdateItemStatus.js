@@ -11,7 +11,7 @@ const hookItemStatus = (isSubmit, setIsSubmit, itemId, newStatus) => {
         async function updateItemStatus() {
             return axios({
                 method: 'post',
-                url: `${process.env.NEXT_PUBLIC_HOST}/items/${itemId}/status/${newStatus}`,
+                url: `api/items/${itemId}/status/${newStatus}`,
                 withCredentials: true,
             });
         }

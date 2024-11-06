@@ -7,7 +7,7 @@ const hookGetRoles = ({ roles, setRoles }) => {
         async function getRoles() {
             return axios({
                 method: 'get',
-                url: `${process.env.NEXT_PUBLIC_HOST}/admin/roles`,
+                url: `api/admin/roles`,
                 withCredentials: true,
             });
         }

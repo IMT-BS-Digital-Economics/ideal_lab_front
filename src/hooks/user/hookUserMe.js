@@ -6,7 +6,7 @@ const hookUserMe = ({ userData, setUserData }) => {
         async function isUser() {
             return axios({
                 method: 'get',
-                url: `${process.env.NEXT_PUBLIC_HOST}/user/me`,
+                url: `api/user/me`,
                 withCredentials: true,
             });
         }

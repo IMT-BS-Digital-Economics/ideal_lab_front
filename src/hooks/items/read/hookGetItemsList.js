@@ -7,7 +7,7 @@ import { useInterval } from '@chakra-ui/react';
 async function getItemsList() {
     return axios({
         method: 'get',
-        url: `${process.env.NEXT_PUBLIC_HOST}/items/list`,
+        url: `api/items/list`,
         withCredentials: true,
     });
 }

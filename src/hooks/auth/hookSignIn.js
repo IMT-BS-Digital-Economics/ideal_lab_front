@@ -15,7 +15,7 @@ const hookSignIn = ({ data, isSubmit, setIsSubmit }) => {
         async function signIn() {
             return axios({
                 method: 'post',
-                url: `${process.env.NEXT_PUBLIC_HOST}/auth/signin`,
+                url: `api/auth/signin`,
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },

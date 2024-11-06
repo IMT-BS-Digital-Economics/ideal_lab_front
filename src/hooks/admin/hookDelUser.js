@@ -14,7 +14,7 @@ const hookDelUser = ({ userEmailDel, setUserEmailDel }) => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                url: `${process.env.NEXT_PUBLIC_HOST}/admin/user`,
+                url: `api/admin/user`,
                 data: JSON.stringify({
                     email: userEmailDel,
                 }),

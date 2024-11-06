@@ -18,7 +18,7 @@ const hookGetOutput = (
         async function getOuput() {
             return axios({
                 method: 'get',
-                url: `${process.env.NEXT_PUBLIC_HOST}/items/${itemId}/${outputType}`,
+                url: `api/items/${itemId}/${outputType}`,
                 withCredentials: true,
             });
         }
