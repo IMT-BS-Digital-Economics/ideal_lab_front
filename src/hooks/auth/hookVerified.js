@@ -11,7 +11,7 @@ const hookVerified = ({ isVerified, setIsVerified, toast }) => {
         async function verified() {
             return axios({
                 method: 'get',
-                url: `${process.env.NEXT_PUBLIC_HOST}/user/me`,
+                url: `api/user/me`,
                 headers: {
                     'Content-Type': 'application/json',
                 },

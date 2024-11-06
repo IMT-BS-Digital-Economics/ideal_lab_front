@@ -12,7 +12,7 @@ const hookDeleteUser = ({ isDelete }) => {
     async function deleteUser() {
         return axios({
             method: 'delete',
-            url: `${process.env.NEXT_PUBLIC_HOST}/user`,
+            url: `api/user`,
             headers: {
                 'Content-Type': 'application/json',
             },

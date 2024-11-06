@@ -15,7 +15,7 @@ const hookUploadFile = (itemId, file, setFile, path = '.') => {
         async function UploadFile() {
             return axios({
                 method: 'post',
-                url: `${process.env.NEXT_PUBLIC_HOST}/projects/${itemId}/upload`,
+                url: `api/projects/${itemId}/upload`,
                 withCredentials: true,
                 data: data,
             });

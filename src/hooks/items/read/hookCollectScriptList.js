@@ -7,7 +7,7 @@ const hookCollectScriptList = ({ collectList, setCollectList }) => {
         async function getCollectScriptList() {
             return axios({
                 method: 'get',
-                url: `${process.env.NEXT_PUBLIC_HOST}/project/`,
+                url: `api/project/`,
                 withCredentials: true,
             });
         }

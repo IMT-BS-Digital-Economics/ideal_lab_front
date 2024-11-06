@@ -25,7 +25,7 @@ const hookAddItem = ({
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                url: `${process.env.NEXT_PUBLIC_HOST}/items/add`,
+                url: `api/items/add`,
                 withCredentials: true,
                 data: JSON.stringify({
                     title: title,

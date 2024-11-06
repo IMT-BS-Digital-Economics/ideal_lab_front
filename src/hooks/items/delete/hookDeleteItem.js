@@ -17,7 +17,7 @@ const hookDeleteItem = (
         async function deleteItem() {
             return axios({
                 method: 'delete',
-                url: `${process.env.NEXT_PUBLIC_HOST}/items/${itemId}`,
+                url: `api/items/${itemId}`,
                 withCredentials: true,
             });
         }

@@ -13,7 +13,7 @@ const hookCollectExecutableList = ({
         async function getExecutableList() {
             return axios({
                 method: 'get',
-                url: `${process.env.NEXT_PUBLIC_HOST}/project/${collect}`,
+                url: `api/project/${collect}`,
                 withCredentials: true,
             });
         }

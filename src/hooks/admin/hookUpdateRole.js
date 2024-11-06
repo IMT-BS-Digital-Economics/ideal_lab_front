@@ -14,7 +14,7 @@ const hookUpdateRole = ({ userName, setUserName, newRole, setNewRole }) => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                url: `${process.env.NEXT_PUBLIC_HOST}/admin/update_role`,
+                url: `api/admin/update_role`,
                 data: JSON.stringify({
                     username: userName,
                     role: newRole,

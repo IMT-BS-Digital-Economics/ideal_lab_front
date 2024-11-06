@@ -7,7 +7,7 @@ const hookGetAllUsers = ({ usersData, setUsersData }) => {
         async function getAllUsers() {
             return axios({
                 method: 'get',
-                url: `${process.env.NEXT_PUBLIC_HOST}/admin/users`,
+                url: `api/admin/users`,
                 withCredentials: true,
             });
         }

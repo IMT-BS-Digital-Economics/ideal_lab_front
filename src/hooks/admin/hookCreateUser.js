@@ -20,7 +20,7 @@ const hookCreateUser = ({
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                url: `${process.env.NEXT_PUBLIC_HOST}/admin/create_user`,
+                url: `api/admin/create_user`,
                 data: JSON.stringify({
                     email: userEmail,
                     username: userName,

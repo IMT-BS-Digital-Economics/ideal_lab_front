@@ -9,7 +9,7 @@ const hookEditMail = ({ isEdit, setIsEdit, newEmail, setNewEmail }) => {
         async function editMail() {
             return axios({
                 method: 'post',
-                url: `${process.env.NEXT_PUBLIC_HOST}/user/reset_email`,
+                url: `api/user/reset_email`,
                 headers: {
                     'Content-Type': 'application/json',
                 },
