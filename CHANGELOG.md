@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.3](https://github.com/IMT-BS-Digital-Economics/ideal_lab_front/compare/v0.1.2...v0.1.3) (2024-11-07)
+
+
+### Bug Fixes
+
+* background color and design for resetting password ([d7bad9f](https://github.com/IMT-BS-Digital-Economics/ideal_lab_front/commit/d7bad9fee28768f9c4c80ea53938090c57798aac))
+
 ## [0.1.2](https://github.com/IMT-BS-Digital-Economics/ideal_lab_front/compare/v0.1.1...v0.1.2) (2024-11-06)
 
 
