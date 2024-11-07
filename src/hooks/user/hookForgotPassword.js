@@ -10,7 +10,7 @@ const hookForgotPassword = ({ isSubmit, setIsSubmit, email }) => {
     const options = {
         title: 'Your password will be reset',
         description:
-            'To do so, you will receive an mail to reset your password',
+            'You will receive a mail to reset your password',
         status: 'success',
         duration: 9000,
         isClosable: true,
@@ -38,7 +38,6 @@ const hookForgotPassword = ({ isSubmit, setIsSubmit, email }) => {
                 .catch(() => {
                     toast(options);
                 });
-            setIsSubmit(false);
         }
     });
 };

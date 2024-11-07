@@ -18,6 +18,8 @@ import {
     PopoverCloseButton,
     PopoverArrow,
     PopoverBody,
+    useColorModeValue,
+    Flex
 } from '@chakra-ui/react';
 
 import { BsCheckLg } from 'react-icons/bs';
@@ -30,12 +32,13 @@ const ResetPassword = () => {
 
     const [isSubmit, setIsSubmit] = useState(false);
 
-    hookForgotPassword({ isSubmit, setIsSubmit, email });
+    const bg = useColorModeValue('teal.50', 'teal.900');
 
+    hookForgotPassword({ isSubmit, setIsSubmit, email });
     return (
-        <div>
-            {!isSubmit ? (
-                <Center margin={'10%'}>
+        <Flex flex="1" align={'center'} justify={'center'} bg={bg}>
+            {
+                !isSubmit ? (
                     <Stack spacing={6}>
                         <Heading color="teal" size={'2xl'}>
                             Reset your password
@@ -70,41 +73,15 @@ const ResetPassword = () => {
                             </Fade>
                         </Center>
                     </Stack>
-                </Center>
-            ) : null}
-            <ScaleFade in={isSubmit} initialScale={0.9}>
-                <Center margin={'10%'}>
-                    <Stack>
-                        <Center>
-                            <BsCheckLg size={'6%'} />
-                        </Center>
-                        <Heading size={'lg'}>An email has been sent</Heading>
-                        <Center>
-                            <Popover>
-                                <PopoverTrigger>
-                                    <Button
-                                        leftIcon={<FcAbout />}
-                                        size="lg"
-                                        iconSpacing={false}
-                                    />
-                                </PopoverTrigger>
-                                <PopoverContent>
-                                    <PopoverArrow />
-                                    <PopoverCloseButton />
-                                    <PopoverBody>
-                                        <Text margin={'2%'}>
-                                            If you have an email address linked
-                                            to an account, you will get soon a
-                                            mail to reset your password
-                                        </Text>
-                                    </PopoverBody>
-                                </PopoverContent>
-                            </Popover>
-                        </Center>
-                    </Stack>
-                </Center>
-            </ScaleFade>
-        </div>
+            ) : <ScaleFade in={isSubmit} initialScale={0.9}>
+                    <Flex direction={"column"} alignItems={"center"}>
+                        <Heading>An email has been sent to <Text as="span" color="teal.500">{email}</Text></Heading>
+                        <Text color="teal.500">
+                            If an email address is associated with your account, you'll soon receive a message with instructions to reset your password.
+                        </Text>
+                    </Flex>
+                </ScaleFade>}
+        </Flex>
     );
 };
 
