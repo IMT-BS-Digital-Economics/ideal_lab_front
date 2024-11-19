@@ -27,7 +27,6 @@ const AboutContent = () => {
                     </Text>
                 </VStack>
 
-                {/* Project Overview */}
                 <Box bg="teal" borderRadius="lg" p={5} mb={10}>
                     <Heading size="lg" mb={4} color={'teal.100'}>
                         Our Mission
@@ -56,17 +55,15 @@ const AboutContent = () => {
                             Meet the Team
                         </Heading>
                         <Text color="teal.200">
-                            Composed of 7 dedicated researchers and led by
+                            Composed of dedicated researchers and led by
                             Grazia Cecere, we are united in our passion for
                             privacy and data research.
                         </Text>
                     </Box>
-                    {/* Additional content or team members can be added here within their own Box components, following the same width pattern. */}
                 </Flex>
 
-                {/* Call to Action */}
                 <Flex justifyContent="center" mt={10}>
-                    <Button as="a" colorScheme="teal" size="lg">
+                    <Button as="a" colorScheme="teal" size="lg" href="https://sites.google.com/view/i-lab-ideal/home">
                         Contact Us
                     </Button>
                 </Flex>
