@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.1.5](https://github.com/IMT-BS-Digital-Economics/ideal_lab_front/compare/v0.1.4...v0.1.5) (2024-11-19)
+
+
+### Bug Fixes
+
+* add contact redirection ([30d2174](https://github.com/IMT-BS-Digital-Economics/ideal_lab_front/commit/30d21744205dc1dd69a64f7271836c412d3f73c0))
+* add contact redirection ([1d98411](https://github.com/IMT-BS-Digital-Economics/ideal_lab_front/commit/1d9841144892a98a62850010de3e5b91f6bf6bc1))
+* redirect issue without / ([18853a7](https://github.com/IMT-BS-Digital-Economics/ideal_lab_front/commit/18853a77a1284763898770fb485954dcce3c643d))
+* redirect issue without / ([6e3f64b](https://github.com/IMT-BS-Digital-Economics/ideal_lab_front/commit/6e3f64b05ab7fbb21410511bbace1a13ea16800d))
+* white spaces ([831048e](https://github.com/IMT-BS-Digital-Economics/ideal_lab_front/commit/831048e026ed8091bbea320472429ab5b67f0a9a))
+* white spaces ([30ac30f](https://github.com/IMT-BS-Digital-Economics/ideal_lab_front/commit/30ac30f510e6e0e21368ff2c8d099c652cf14757))
+
 ## [0.1.4](https://github.com/IMT-BS-Digital-Economics/ideal_lab_front/compare/v0.1.3...v0.1.4) (2024-11-19)
 
 
