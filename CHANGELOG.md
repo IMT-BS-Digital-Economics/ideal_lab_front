@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.4](https://github.com/IMT-BS-Digital-Economics/ideal_lab_front/compare/v0.1.3...v0.1.4) (2024-11-19)
+
+
+### Bug Fixes
+
+* path for axios usage ([862b6f1](https://github.com/IMT-BS-Digital-Economics/ideal_lab_front/commit/862b6f1790213f4ec88a9b2ea518f5e18ca46fc3))
+
 ## [0.1.3](https://github.com/IMT-BS-Digital-Economics/ideal_lab_front/compare/v0.1.2...v0.1.3) (2024-11-07)
 
 
