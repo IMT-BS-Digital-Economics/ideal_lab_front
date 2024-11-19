@@ -1,19 +1,14 @@
 import { useEffect } from 'react';
 
-import axios from 'axios';
-
 import { useToast } from '@chakra-ui/react';
+import instance from '../../instance';
 
 const hookItemStatus = (isSubmit, setIsSubmit, itemId, newStatus) => {
     const toast = useToast();
 
     useEffect(() => {
         async function updateItemStatus() {
-            return axios({
-                method: 'post',
-                url: `api/items/${itemId}/status/${newStatus}`,
-                withCredentials: true,
-            });
+            return instance.post(`/items/${itemId}/status/${newStatus}`);
         }
 
         if (isSubmit && itemId) {
@@ -28,6 +23,7 @@ const hookItemStatus = (isSubmit, setIsSubmit, itemId, newStatus) => {
                     });
                 })
                 .catch((error) => {
+                    console.log(error);
                     toast({
                         title: error.response.data.detail,
                         description: `${itemId} status hasn't been updated to ${newStatus}`,

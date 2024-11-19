@@ -9,7 +9,7 @@ import {
     InputGroup,
 } from '@chakra-ui/react';
 import { useState } from 'react';
-import hookCreateUser from '../../hooks/admin/hookCreateUser';
+import { useApiCallToastResp } from '../../hooks/callApi';
 
 const UserForm = ({ onClose }) => {
     const [userEmail, setUserEmail] = useState();
@@ -30,7 +30,7 @@ const UserForm = ({ onClose }) => {
 
     const isValidForm = () => userEmail && userName && passWord;
 
-    hookCreateUser({ userEmail, userName, passWord, isSubmit, setIsSubmit });
+    useApiCallToastResp('post', '/admin/create_user', {"email": userEmail, "username": userName, "password": passWord}, isSubmit, setIsSubmit);
 
     return (
         <Stack spacing={'3%'} direction={'column'}>

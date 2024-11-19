@@ -20,7 +20,7 @@ import { IoInformation, IoArrowForward } from 'react-icons/io5';
 
 import ProfileMenu from './profileMenu';
 
-import hookUserMe from '../../hooks/user/hookUserMe';
+import { useApiCallDataResp } from '../../hooks/callApi';
 import { FiMenu, FiX } from 'react-icons/fi';
 
 const NavBar = () => {
@@ -28,14 +28,13 @@ const NavBar = () => {
 
     const { isOpen, onToggle } = useDisclosure();
 
-    hookUserMe({
-        userData,
-        setUserData,
-    });
+    useApiCallDataResp('get', '/user/me', '', userData, setUserData);
 
     const navBarButtons = (
         <>
-            {!userData ? (
+            {userData.data && userData.data.username ? (
+                <ProfileMenu username={userData.data.username} />
+            ) : (
                 <NextLink href={'/login'} passHref>
                     <Button
                         rightIcon={<IoArrowForward />}
@@ -45,8 +44,6 @@ const NavBar = () => {
                         Login
                     </Button>
                 </NextLink>
-            ) : (
-                <ProfileMenu username={userData.username} />
             )}
             <NextLink href={'/about'} passHref>
                 <Button

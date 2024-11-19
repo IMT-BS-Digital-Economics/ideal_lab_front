@@ -14,7 +14,7 @@ import NextLink from 'next/link';
 import { FaUserAlt } from 'react-icons/fa';
 
 import hookSignOut from '../../hooks/auth/hookSignOut';
-import hookUserMe from '../../hooks/user/hookUserMe';
+import { useApiCallDataResp } from '../../hooks/callApi';
 
 const ProfileMenu = ({ username }) => {
     const [isSubmit, setIsSubmit] = useState(false);
@@ -23,10 +23,7 @@ const ProfileMenu = ({ username }) => {
 
     hookSignOut({ isSubmit, setIsSubmit });
 
-    hookUserMe({
-        userData,
-        setUserData,
-    });
+    useApiCallDataResp('get', '/user/me', '', userData, setUserData);
 
     return (
         <div>
@@ -39,25 +36,29 @@ const ProfileMenu = ({ username }) => {
                 >
                     {username}
                 </MenuButton>
-                <MenuList>
-                    {userData.role === 'chief_access' ? (
-                        <MenuGroup title={'Admin'}>
-                            <NextLink href={'/admin'} passHref>
-                                <MenuItem>Manage users</MenuItem>
-                            </NextLink>
-                        </MenuGroup>
-                    ) : (
-                        <></>
-                    )}
-                    <MenuGroup title={'Profile'}>
-                        <NextLink href={'/user'} passHref>
-                            <MenuItem>My Account</MenuItem>
-                        </NextLink>
-                        <MenuItem onClick={() => setIsSubmit(true)}>
-                            Sign Out
-                        </MenuItem>
-                    </MenuGroup>
-                </MenuList>
+                {
+                    userData && userData.data ? (
+                        <MenuList>
+                            {userData.data.role === 'chief_access' ? (
+                                <MenuGroup title={'Admin'}>
+                                    <NextLink href={'/admin'} passHref>
+                                        <MenuItem>Manage users</MenuItem>
+                                    </NextLink>
+                                </MenuGroup>
+                            ) : (
+                                <></>
+                            )}
+                            <MenuGroup title={'Profile'}>
+                                <NextLink href={'/user'} passHref>
+                                    <MenuItem>My Account</MenuItem>
+                                </NextLink>
+                                <MenuItem onClick={() => setIsSubmit(true)}>
+                                    Sign Out
+                                </MenuItem>
+                            </MenuGroup>
+                        </MenuList>
+                    ) : null
+                }
             </Menu>
         </div>
     );

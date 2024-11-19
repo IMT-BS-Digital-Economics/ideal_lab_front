@@ -1,15 +1,11 @@
 import { useEffect } from 'react';
 
-import axios from 'axios';
+import instance from '../../instance';
 
 const hookCollectScriptList = ({ collectList, setCollectList }) => {
     useEffect(() => {
         async function getCollectScriptList() {
-            return axios({
-                method: 'get',
-                url: `api/project/`,
-                withCredentials: true,
-            });
+            return instance.get('/project/');
         }
 
         if (collectList.length === 0) {

@@ -2,13 +2,13 @@ import { useState } from 'react';
 
 import { Box, Stack } from '@chakra-ui/react';
 
-import hookGetAllUsers from '../../hooks/admin/hookGetAllUsers';
+import { useApiCallDataResp } from '../../hooks/callApi';
 import UserCard from './userCard';
 
 const DisplayUsers = () => {
     const [usersData, setUsersData] = useState(false);
-
-    hookGetAllUsers({ usersData, setUsersData });
+    
+    useApiCallDataResp('get', 'admin/users', '', usersData, setUsersData);
 
     return (
         <div>
@@ -21,8 +21,8 @@ const DisplayUsers = () => {
                 h={'48em'}
             >
                 <Stack direction={'column'} spacing={'6'}>
-                    {usersData ? (
-                        usersData.map((user) => {
+                    {usersData && usersData.data ? (
+                        usersData.data.map((user) => {
                             return (
                                 <>
                                     {user && user.id && user.username ? (

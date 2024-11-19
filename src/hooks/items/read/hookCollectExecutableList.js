@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import axios from 'axios';
+import instance from '../../instance';
 
 const hookCollectExecutableList = ({
     executableList,
@@ -11,11 +11,7 @@ const hookCollectExecutableList = ({
 
     useEffect(() => {
         async function getExecutableList() {
-            return axios({
-                method: 'get',
-                url: `api/project/${collect}`,
-                withCredentials: true,
-            });
+            return instance.get(`/project/${collect}`);
         }
 
         if (!collectCpy && collect) {

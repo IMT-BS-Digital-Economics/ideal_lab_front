@@ -4,10 +4,10 @@ import { useToast } from '@chakra-ui/react';
 import instance from '../hooks/instance';
 import useResponsiveValue from '../hooks/useResponsiveValue';
 
-async function callApi(method, endpoint, data) {
+async function callApi(method, endpoint, data = {}) {
     if (method === 'post') return instance.post(endpoint, data);
-    if (method === 'get') return instance.get(endpoint);
-    if (method === 'delete') return instance.delete(endpoint);
+    if (method === 'get') return instance.get(endpoint, data);
+    if (method === 'delete') return instance.delete(endpoint, data);
 
     return undefined;
 }
@@ -39,7 +39,7 @@ export function useApiCallToastResp(
                         title:
                             response && response.data && response.data.message
                                 ? response.data.message
-                                : null,
+                                : 'Operation done',
                     });
                 })
                 .catch((error) => {
@@ -54,7 +54,7 @@ export function useApiCallToastResp(
                             error.response.data &&
                             error.response.data.message
                                 ? error.response.data.message
-                                : 'We have a problem',
+                                : 'Check console logs',
                     });
                 });
             setIsSubmit(false);
@@ -76,8 +76,11 @@ export function useApiCallDataResp(
                     setResponse(reqResponse);
                 })
                 .catch((error) => {
+                    console.log(error)
                     setResponse(error);
                 });
+        } else {
+            console.log(response)
         }
     });
 }
@@ -95,8 +98,9 @@ export function useApiCallDataRespDelay(
             .then((reqResponse) => {
                 setResponse(reqResponse);
             })
-            .catch(() => {
+            .catch((error) => {
                 setResponse('error');
+                console.log(error)
             });
     }, [method, endpoint, data]);
 

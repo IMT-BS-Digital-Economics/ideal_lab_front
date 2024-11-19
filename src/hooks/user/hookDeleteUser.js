@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 
 import { useToast } from '@chakra-ui/react';
 
-import axios from 'axios';
+import instance from '../instance';
 
 const hookDeleteUser = ({ isDelete }) => {
     const router = useRouter();
@@ -10,14 +10,7 @@ const hookDeleteUser = ({ isDelete }) => {
     const toast = useToast();
 
     async function deleteUser() {
-        return axios({
-            method: 'delete',
-            url: `api/user`,
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            withCredentials: true,
-        });
+        return instance.delete('/user');
     }
 
     if (isDelete) {

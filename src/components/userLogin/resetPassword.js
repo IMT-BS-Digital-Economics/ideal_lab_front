@@ -11,21 +11,12 @@ import {
     Stack,
     Fade,
     Button,
-    Popover,
-    PopoverTrigger,
-    PopoverContent,
     ScaleFade,
-    PopoverCloseButton,
-    PopoverArrow,
-    PopoverBody,
     useColorModeValue,
     Flex
 } from '@chakra-ui/react';
 
-import { BsCheckLg } from 'react-icons/bs';
-import { FcAbout } from 'react-icons/fc';
-
-import hookForgotPassword from '../../hooks/user/hookForgotPassword';
+import { useApiCallToastResp } from '../../hooks/callApi';
 
 const ResetPassword = () => {
     const [email, setEmail] = useState('');
@@ -34,7 +25,8 @@ const ResetPassword = () => {
 
     const bg = useColorModeValue('teal.50', 'teal.900');
 
-    hookForgotPassword({ isSubmit, setIsSubmit, email });
+    useApiCallToastResp('post', '/user/forgot_password', {"email": email}, isSubmit, setIsSubmit);
+
     return (
         <Flex flex="1" align={'center'} justify={'center'} bg={bg}>
             {

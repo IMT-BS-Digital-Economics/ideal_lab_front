@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import axios from 'axios';
+import instance from '../../instance';
 
 import { useToast } from '@chakra-ui/react';
 
@@ -20,21 +20,7 @@ const hookAddItem = ({
 
     useEffect(() => {
         async function addItem() {
-            return axios({
-                method: 'post',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                url: `api/items/add`,
-                withCredentials: true,
-                data: JSON.stringify({
-                    title: title,
-                    description: description,
-                    path: executable,
-                    time_to_start: `${hour}:${minutes}`,
-                    arguments: args,
-                }),
-            });
+            return instance.post('/items/add', {data: { title: title, description: description, path: executable, time_to_start: `${hour}:${minutes}`, arguments: args }});
         }
 
         if (isSubmit) {
@@ -49,8 +35,9 @@ const hookAddItem = ({
                     onClose();
                 })
                 .catch((error) => {
+                    console.log(error)
                     toast({
-                        title: 'Something wrong happened',
+                        title: 'Check console logs',
                         description: error.response.data.detail,
                         status: 'error',
                         duration: 9000,

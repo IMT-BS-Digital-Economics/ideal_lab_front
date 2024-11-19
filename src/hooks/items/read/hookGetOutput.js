@@ -1,8 +1,7 @@
 import { useState } from 'react';
 
-import axios from 'axios';
-
 import { useInterval } from '@chakra-ui/react';
+import instance from '../../instance';
 
 const hookGetOutput = (
     itemId,
@@ -16,11 +15,7 @@ const hookGetOutput = (
 
     useInterval(() => {
         async function getOuput() {
-            return axios({
-                method: 'get',
-                url: `api/items/${itemId}/${outputType}`,
-                withCredentials: true,
-            });
+            return instance.get(`/items/${itemId}/${outputType}`);
         }
 
         if (
@@ -38,6 +33,7 @@ const hookGetOutput = (
                     setOutput(response.data);
                 })
                 .catch((error) => {
+                    console.log(error);
                     setOutput(error.response.data.detail);
                     setIsSubmit(false);
                     setDelay(0);
