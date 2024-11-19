@@ -42,7 +42,7 @@ const Repository = () => {
 
     useApiCallDataResp(
         'get',
-        '/repositories',
+        'repositories/',
         {},
         repositories,
         setRepositories
