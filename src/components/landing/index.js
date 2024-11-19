@@ -10,13 +10,13 @@ import {
 import NextLink from 'next/link';
 import { SunIcon } from '@chakra-ui/icons';
 import AnimatedParticles from './animatedParticles';
-import hookUserMe from '../../hooks/user/hookUserMe';
-import { useState } from 'react'; // Assuming this is a custom component
+import { useApiCallDataResp } from '../../hooks/callApi';
+import { useState } from 'react';
 
 const LandingPage = () => {
     const [userData, setUserData] = useState(false);
 
-    hookUserMe({ userData, setUserData });
+    useApiCallDataResp('get', '/user/me', '', userData, setUserData);
 
     const bg = useColorModeValue('teal.50', 'teal.900');
 
@@ -42,7 +42,7 @@ const LandingPage = () => {
                         Dashboard
                     </Heading>
 
-                    {userData && (
+                    {userData && userData.data && (
                         <Stack
                             spacing={10}
                             direction={{ base: 'column', xl: 'row' }}

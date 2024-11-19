@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 
 import { useToast } from '@chakra-ui/react';
 
-import axios from 'axios';
+import instance from '../instance';
 
 const hookSignIn = ({ data, isSubmit, setIsSubmit }) => {
     const toast = useToast();
@@ -13,15 +13,7 @@ const hookSignIn = ({ data, isSubmit, setIsSubmit }) => {
 
     useEffect(() => {
         async function signIn() {
-            return axios({
-                method: 'post',
-                url: `api/auth/signin`,
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                withCredentials: true,
-                data: data,
-            });
+            return instance.post('auth/signin', data, {"headers": {'Content-Type': 'application/x-www-form-urlencoded'}});
         }
         if (isSubmit) {
             signIn()
@@ -35,6 +27,7 @@ const hookSignIn = ({ data, isSubmit, setIsSubmit }) => {
                     router.push('/');
                 })
                 .catch((error) => {
+                    console.log(error);
                     toast({
                         title: 'Error',
                         description:

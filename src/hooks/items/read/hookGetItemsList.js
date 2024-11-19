@@ -1,15 +1,11 @@
 import { useState } from 'react';
 
-import axios from 'axios';
+import instance from '../../instance';
 
 import { useInterval } from '@chakra-ui/react';
 
 async function getItemsList() {
-    return axios({
-        method: 'get',
-        url: `api/items/list`,
-        withCredentials: true,
-    });
+    return instance.get(`/items/list`);
 }
 
 const hookGetItemsList = ({ setItemsList }) => {

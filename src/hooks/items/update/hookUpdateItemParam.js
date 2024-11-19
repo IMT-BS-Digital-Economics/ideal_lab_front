@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 import { useToast } from '@chakra-ui/react';
 
-import axios from 'axios';
+import instance from '../../instance';
 
 const hookUpdateItemParam = (
     itemTitle,
@@ -16,15 +16,7 @@ const hookUpdateItemParam = (
 
     useEffect(() => {
         async function updateItemParam() {
-            return axios({
-                method: 'post',
-                url: `api/items/${itemId}/edit/${itemParam}`,
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                withCredentials: true,
-                data: JSON.stringify({ [itemParam]: newValue }),
-            });
+            return instance.post(`api/items/${itemId}/edit/${itemParam}`, {data: { [itemParam]: newValue }});
         }
 
         if (isSubmit) {
@@ -39,6 +31,7 @@ const hookUpdateItemParam = (
                         });
                     })
                     .catch((error) => {
+                        console.log(error);
                         toast({
                             title: 'An error has occured !',
                             description: error.response.data.detail,

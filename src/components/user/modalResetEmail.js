@@ -16,7 +16,7 @@ import {
     useDisclosure,
 } from '@chakra-ui/react';
 
-import hookEditMail from '../../hooks/user/hookEditMail';
+import { useApiCallToastResp } from '../../hooks/callApi';
 
 const ModalResetEmail = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -26,7 +26,7 @@ const ModalResetEmail = () => {
     const [newEmail, setNewEmail] = useState(null);
     const [confirmNewEmail, setConfirmNewEmail] = useState('');
 
-    hookEditMail({ isEdit, setIsEdit, newEmail, setNewEmail });
+    useApiCallToastResp('post', '/user/reset_email', { "email": newEmail }, isEdit, setIsEdit);
 
     return (
         <>

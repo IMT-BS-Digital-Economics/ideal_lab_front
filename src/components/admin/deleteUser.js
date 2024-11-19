@@ -13,7 +13,7 @@ import {
     useDisclosure,
 } from '@chakra-ui/react';
 
-import hookDelUser from '../../hooks/admin/hookDelUser';
+import { useApiCallToastResp } from '../../hooks/callApi';
 
 const DeleteUser = ({ user }) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -21,7 +21,7 @@ const DeleteUser = ({ user }) => {
 
     const [userEmailDel, setUserEmailDel] = useState(false);
 
-    hookDelUser({ userEmailDel, setUserEmailDel });
+    useApiCallToastResp('delete', '/admin/user', {data: { email: userEmailDel}}, userEmailDel, setUserEmailDel);
 
     return (
         <>

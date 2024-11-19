@@ -19,8 +19,7 @@ import {
     Flex,
 } from '@chakra-ui/react';
 
-import hookGetRoles from '../../hooks/admin/hookGetRoles';
-import hookUpdateRole from '../../hooks/admin/hookUpdateRole';
+import { useApiCallDataResp, useApiCallToastResp } from '../../hooks/callApi';
 
 const RoleHandler = ({ user }) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -30,9 +29,9 @@ const RoleHandler = ({ user }) => {
     const [newRole, setNewRole] = useState(false);
     const [userName, setUserName] = useState(false);
 
-    hookGetRoles({ roles, setRoles });
+    useApiCallDataResp('get', '/admin/roles', '', roles, setRoles);
 
-    hookUpdateRole({ userName, setUserName, newRole, setNewRole });
+    useApiCallToastResp('post', '/admin/update_role', {"username": userName, "role": newRole}, userName, setUserName);
 
     return (
         <>
@@ -55,8 +54,8 @@ const RoleHandler = ({ user }) => {
                                 {newRole ? newRole : 'Choose a role'}
                             </MenuButton>
                             <MenuList>
-                                {roles
-                                    ? roles.map((role, index) => {
+                                {roles && roles.data
+                                    ? roles.data.map((role, index) => {
                                           return (
                                               <Flex key={index}>
                                                   <MenuItem

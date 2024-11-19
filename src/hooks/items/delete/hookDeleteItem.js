@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 import { useToast } from '@chakra-ui/react';
 
-import axios from 'axios';
+import instance from '../../instance';
 
 const hookDeleteItem = (
     currentId,
@@ -15,11 +15,7 @@ const hookDeleteItem = (
 
     useEffect(() => {
         async function deleteItem() {
-            return axios({
-                method: 'delete',
-                url: `api/items/${itemId}`,
-                withCredentials: true,
-            });
+            return instance.delete(`items/${itemId}`);
         }
 
         if (isSubmit) {
@@ -37,6 +33,7 @@ const hookDeleteItem = (
                     }
                 })
                 .catch((error) => {
+                    console.log(error);
                     toast({
                         title: 'An error occured !',
                         description: error.response.data.detail,

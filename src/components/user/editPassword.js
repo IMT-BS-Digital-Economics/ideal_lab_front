@@ -11,8 +11,7 @@ import {
     useDisclosure,
 } from '@chakra-ui/react';
 
-import hookUserMe from '../../hooks/user/hookUserMe';
-import hookForgotPassword from '../../hooks/user/hookForgotPassword';
+import { useApiCallDataResp, useApiCallToastResp } from '../../hooks/callApi';
 
 const EditPassword = () => {
     const [userData, setUserData] = useState('');
@@ -21,11 +20,11 @@ const EditPassword = () => {
 
     const cancelRef = useRef();
 
-    hookUserMe({ userData, setUserData });
+    useApiCallDataResp('get', '/user/me', '', userData, setUserData);
 
-    const email = userData.email;
-
-    hookForgotPassword({ isSubmit, setIsSubmit, email });
+    const email = userData && userData.data ? (userData.data.email) : null;
+    
+    useApiCallToastResp('post', '/user/forgot_password', {"email": email}, isSubmit, setIsSubmit);
 
     const { isOpen, onOpen, onClose } = useDisclosure();
 

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 import FormData from 'form-data';
 
-import axios from 'axios';
+import instance from '../../instance';
 
 import { useToast } from '@chakra-ui/react';
 
@@ -13,12 +13,7 @@ const hookUploadFile = (itemId, file, setFile, path = '.') => {
 
     useEffect(() => {
         async function UploadFile() {
-            return axios({
-                method: 'post',
-                url: `api/projects/${itemId}/upload`,
-                withCredentials: true,
-                data: data,
-            });
+            return instance.post(`/projects/${itemId}/upload`, {data: data});
         }
 
         if (file) {
@@ -34,6 +29,7 @@ const hookUploadFile = (itemId, file, setFile, path = '.') => {
                     });
                 })
                 .catch((error) => {
+                    console.log(error);
                     toast({
                         title: 'An error occured',
                         description: error.response.data.detail,

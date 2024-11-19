@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 
 import { useToast } from '@chakra-ui/react';
 
-import axios from 'axios';
+import instance from '../instance';
 
 const hookSignOut = ({ isSubmit, setIsSubmit }) => {
     const toast = useToast();
@@ -13,14 +13,7 @@ const hookSignOut = ({ isSubmit, setIsSubmit }) => {
 
     return useEffect(() => {
         async function signOutUser() {
-            return axios({
-                method: 'post',
-                url: `api/auth/signout`,
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                withCredentials: true,
-            });
+            return instance.post('/auth/signout');
         }
 
         if (isSubmit) {
