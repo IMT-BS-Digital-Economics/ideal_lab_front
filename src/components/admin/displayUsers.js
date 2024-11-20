@@ -1,6 +1,8 @@
 import { useState } from 'react';
 
-import { Box, Stack } from '@chakra-ui/react';
+import { Box, Stack, IconButton} from '@chakra-ui/react';
+
+import { FaArrowsRotate } from 'react-icons/fa6';
 
 import { useApiCallDataResp } from '../../hooks/callApi';
 import UserCard from './userCard';
@@ -12,6 +14,16 @@ const DisplayUsers = () => {
 
     return (
         <div>
+                        <IconButton
+                ml={6}
+                colorScheme="teal"
+                aria-label="Refresh"
+                size="lg"
+                icon={<FaArrowsRotate />}
+                onClick={() => {
+                    setUsersData(false);
+                }}
+            />
             <Box
                 m={'3%'}
                 overflowY={'auto'}

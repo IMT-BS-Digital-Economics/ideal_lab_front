@@ -16,7 +16,7 @@ const AddUser = () => {
             <Card bg={'teal.100'} m={'1%'}>
                 <CardHeader>
                     <Heading color={'teal'}>
-                        Manage your users for the best and the worst
+                        Manage your users
                     </Heading>
                 </CardHeader>
                 <CardBody>
