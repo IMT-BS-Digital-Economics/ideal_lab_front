@@ -52,8 +52,8 @@ export function useApiCallToastResp(
                         description:
                             error.response &&
                             error.response.data &&
-                            error.response.data.message
-                                ? error.response.data.message
+                            error.response.data.detail
+                                ? error.response.data.detail
                                 : 'Check console logs',
                     });
                 });
@@ -79,8 +79,6 @@ export function useApiCallDataResp(
                     console.log(error)
                     setResponse(error);
                 });
-        } else {
-            console.log(response)
         }
     });
 }

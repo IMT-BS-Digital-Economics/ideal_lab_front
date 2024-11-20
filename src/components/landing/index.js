@@ -1,3 +1,7 @@
+import { useState, useEffect } from 'react';
+
+import { useRouter } from 'next/router';
+
 import {
     Box,
     VStack,
@@ -11,14 +15,25 @@ import NextLink from 'next/link';
 import { SunIcon } from '@chakra-ui/icons';
 import AnimatedParticles from './animatedParticles';
 import { useApiCallDataResp } from '../../hooks/callApi';
-import { useState } from 'react';
 
 const LandingPage = () => {
     const [userData, setUserData] = useState(false);
 
+    const router = useRouter();
+
     useApiCallDataResp('get', '/user/me', '', userData, setUserData);
 
     const bg = useColorModeValue('teal.50', 'teal.900');
+    
+    useEffect(() => {
+        const checkVerification = () => {
+            if (userData && userData.data && !userData.data.is_verified) {
+                router.push('/user/verify');
+            }
+        };
+  
+      checkVerification();
+    }, [userData]);
 
     return (
         <>

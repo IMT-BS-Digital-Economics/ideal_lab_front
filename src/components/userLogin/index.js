@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import NextLink from 'next/link';
+import { useRouter } from 'next/router';
 
 import FormData from 'form-data';
 
@@ -19,6 +20,8 @@ import {
 
 import hookSignIn from '../../hooks/auth/hookSignIn';
 
+import { useApiCallDataResp } from '../../hooks/callApi';
+
 const UserLogin = () => {
     const [nameInput, setNameInput] = useState('');
     const [passwordInput, setPasswordInput] = useState('');
@@ -26,6 +29,22 @@ const UserLogin = () => {
     const [isSubmit, setIsSubmit] = useState(false);
     const [, setResponseSuccess] = useState(false);
     const noRedirect = useState(false);
+
+    const [userData, setUserData] = useState(false);
+
+    const router = useRouter();
+
+    useApiCallDataResp('get', '/user/me', '', userData, setUserData);
+    
+    useEffect(() => {
+        const checkVerification = () => {
+            if (userData && userData.data) {
+                router.push('/');
+            }
+        };
+  
+      checkVerification();
+    }, [userData]);
 
     const handleInputChange = (e, setter) => {
         setter(e.target.value);
