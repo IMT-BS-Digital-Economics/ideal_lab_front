@@ -19,7 +19,7 @@ const hookSignOut = ({ isSubmit, setIsSubmit }) => {
         if (isSubmit) {
             signOutUser().then((response) => {
                 toast({
-                    title: response.data.detail,
+                    title: response.data.message,
                     status: 'success',
                     duration: 9000,
                     isClosable: true,
