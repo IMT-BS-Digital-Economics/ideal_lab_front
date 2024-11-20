@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 
 import NextLink from 'next/link';
-import { useRouter } from 'next/router';
 
 import FormData from 'form-data';
 
@@ -16,64 +15,38 @@ import {
     FormControl,
     Flex,
     useColorModeValue,
+    Heading,
+    Text,
 } from '@chakra-ui/react';
+import { useApiCallToastResp } from '../../hooks/callApi';
 
-import hookSignIn from '../../hooks/auth/hookSignIn';
-
-import { useApiCallDataResp } from '../../hooks/callApi';
-
-const UserLogin = () => {
-    const [nameInput, setNameInput] = useState('');
+const ChangePassword = ({token}) => {
+    const bg = useColorModeValue('teal.50', 'teal.900');
+    const [ isSubmit, setIsSubmit ] = useState(false);
     const [passwordInput, setPasswordInput] = useState('');
+    const [ confirmPass, setConfirmPass ] = useState('');
     const [show, setShow] = useState(false);
-    const [isSubmit, setIsSubmit] = useState(false);
-    const [, setResponseSuccess] = useState(false);
-    const noRedirect = useState(false);
-
-    const [userData, setUserData] = useState(false);
-
-    const router = useRouter();
-
-    useApiCallDataResp('get', '/user/me', '', userData, setUserData);
-    
-    useEffect(() => {
-        const checkVerification = () => {
-            if (userData && userData.data) {
-                router.push('/');
-            }
-        };
-  
-      checkVerification();
-    }, [userData]);
-
-    const handleInputChange = (e, setter) => {
-        setter(e.target.value);
-    };
 
     const handleClick = () => {
         setShow(!show);
+    };
+
+    const handleInputChange = (e, setter) => {
+        setter(e.target.value);
     };
 
     const isError = (value) => {
         return value === '';
     };
 
-    const isValidForm = () => !isError(nameInput) && !isError(passwordInput);
+    const isValidForm = () => !isError(passwordInput) && !isError(confirmPass);
 
     const data = new FormData();
-    data.append('username', nameInput);
     data.append('password', passwordInput);
+    data.append('confirm_password', confirmPass);
 
-    hookSignIn({
-        data,
-        isSubmit,
-        setIsSubmit,
-        setResponseSuccess,
-        noRedirect,
-    });
-
-    const bg = useColorModeValue('teal.50', 'teal.900');
-
+    useApiCallToastResp('post', `/user/reset_password/${token}`, {password: passwordInput, confirm_password: confirmPass}, isSubmit, setIsSubmit);
+    
     return (
         <Flex flex="1" align={'center'} justify={'center'} bg={bg}>
             <FormControl isRequired>
@@ -83,21 +56,6 @@ const UserLogin = () => {
                         direction={'column'}
                         w={{ base: '75%', xl: '30%' }}
                     >
-                        <InputGroup
-                            variant={'filled'}
-                            size={'lg'}
-                            flexDirection={'column'}
-                        >
-                            <FormLabel>Username</FormLabel>
-                            <Input
-                                placeholder={'Username'}
-                                value={nameInput}
-                                onChange={(e) =>
-                                    handleInputChange(e, setNameInput)
-                                }
-                                shadow={'md'}
-                            />
-                        </InputGroup>
                         <InputGroup
                             variant={'filled'}
                             size={'lg'}
@@ -123,16 +81,32 @@ const UserLogin = () => {
                                     </Button>
                                 </InputRightElement>
                             </InputGroup>
-                            <NextLink href={'/user/reset'} passHref>
-                                <Button
-                                    variant={'ghost'}
-                                    colorScheme={'teal'}
-                                    size="sm"
-                                    marginTop={'2%'}
-                                >
-                                    Forgot your password ?
-                                </Button>
-                            </NextLink>
+                        </InputGroup>
+                        <InputGroup
+                            variant={'filled'}
+                            size={'lg'}
+                            flexDirection={'column'}
+                        >
+                            <FormLabel>Confirm Password</FormLabel>
+                            <InputGroup>
+                                <Input
+                                    placeholder={'Password'}
+                                    type={show ? 'text' : 'password'}
+                                    value={confirmPass}
+                                    onChange={(e) =>
+                                        handleInputChange(e, setConfirmPass)
+                                    }
+                                    shadow={'md'}
+                                />
+                                <InputRightElement>
+                                    <Button
+                                        colorScheme={'teal'}
+                                        onClick={handleClick}
+                                    >
+                                        {show ? 'Hide' : 'Show'}
+                                    </Button>
+                                </InputRightElement>
+                            </InputGroup>
                         </InputGroup>
                         <Fade in={isValidForm()}>
                             <Button
@@ -140,11 +114,11 @@ const UserLogin = () => {
                                 size={'lg'}
                                 w={'100%'}
                                 isLoading={isSubmit}
-                                loadingText={'Login in...'}
+                                loadingText={'Wait...'}
                                 onClick={() => setIsSubmit(true)}
                                 shadow={'md'}
                             >
-                                Login
+                                Change Password
                             </Button>
                         </Fade>
                     </Flex>
@@ -154,4 +128,4 @@ const UserLogin = () => {
     );
 };
 
-export default UserLogin;
+export default ChangePassword;

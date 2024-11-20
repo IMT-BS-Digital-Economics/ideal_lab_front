@@ -5,6 +5,8 @@ import {
     Text,
     CardHeader,
     CardFooter,
+    Button,
+    Flex,
 } from '@chakra-ui/react';
 
 import DeleteUser from './deleteUser';
@@ -25,6 +27,9 @@ const UserCard = ({ user }) => {
                     <RoleHandler user={user} />
                     <DeleteUser user={user} />
                 </Stack>
+                <Flex right={"0"} position={"absolute"}>
+                    <Button variant={"outline"}>{user.is_verified ? "Email Verified" : "Email not verified"}</Button>
+                </Flex>
             </CardFooter>
         </Card>
     );
