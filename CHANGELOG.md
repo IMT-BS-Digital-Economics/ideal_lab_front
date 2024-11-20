@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.2.0](https://github.com/IMT-BS-Digital-Economics/ideal_lab_front/compare/v0.1.5...v0.2.0) (2024-11-20)
+
+
+### Features
+
+* add refresh button to admin interface & user email status ([02e531a](https://github.com/IMT-BS-Digital-Economics/ideal_lab_front/commit/02e531abf8e942d5cbecbf23c3d05bcb9a136661))
+
+
+### Bug Fixes
+
+* add missing page for password reset ([3e98a84](https://github.com/IMT-BS-Digital-Economics/ideal_lab_front/commit/3e98a84ed63e68b4902e5bdb1fbf3525a7d03338))
+* add missing page to verify user ([d373931](https://github.com/IMT-BS-Digital-Economics/ideal_lab_front/commit/d373931ff513516aab673fc6a5a1e95e3d1777d3))
+* toast undefined message ([874c537](https://github.com/IMT-BS-Digital-Economics/ideal_lab_front/commit/874c537828a6aac357bb8591d02b1c461d37ec17))
+
 ## [0.1.5](https://github.com/IMT-BS-Digital-Economics/ideal_lab_front/compare/v0.1.4...v0.1.5) (2024-11-19)
 
 
