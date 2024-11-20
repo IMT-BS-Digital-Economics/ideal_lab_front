@@ -10,7 +10,7 @@ const AddExecutable = ({ repository, setRepository, setExecutable }) => {
 
     useApiCallDataResp(
         'get',
-        '/repositories',
+        '/repositories/',
         {},
         repositoriesList,
         setRepositoriesList
