@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.1](https://github.com/IMT-BS-Digital-Economics/ideal_lab_front/compare/v0.2.0...v0.2.1) (2024-11-20)
+
+
+### Bug Fixes
+
+* fixing mismatch name ([ce12953](https://github.com/IMT-BS-Digital-Economics/ideal_lab_front/commit/ce12953a83f0350ba16140ac7bdc96ffa0ae7000))
+* issue with redirecting to http ([7242713](https://github.com/IMT-BS-Digital-Economics/ideal_lab_front/commit/7242713b403caadcc541b65eef96b680ef1edcae))
+
 ## [0.2.0](https://github.com/IMT-BS-Digital-Economics/ideal_lab_front/compare/v0.1.5...v0.2.0) (2024-11-20)
 
 
