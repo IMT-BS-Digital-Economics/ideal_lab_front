@@ -63,8 +63,10 @@ const Footer = () => {
                     </NextLink>
                     <Button
                         size="sm"
+                        as="a"
                         variant={'ghost'}
                         _hover={{ bg: 'teal.700', color: 'white' }}
+                        href="https://sites.google.com/view/i-lab-ideal/home"
                     >
                         Contact
                     </Button>
