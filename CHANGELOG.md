@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.2.2](https://github.com/IMT-BS-Digital-Economics/ideal_lab_front/compare/v0.2.1...v0.2.2) (2024-11-21)
+
+
+### Bug Fixes
+
+* redirect for env operations ([2e7eb05](https://github.com/IMT-BS-Digital-Economics/ideal_lab_front/commit/2e7eb05046f3f1ec7fb8c80928ca054065b7d3cd))
+* redirect for upload operation ([6c94131](https://github.com/IMT-BS-Digital-Economics/ideal_lab_front/commit/6c94131a53fc2e8100f222178cc2cd030e829c0d))
+* redirect for user deletion ([0da5c91](https://github.com/IMT-BS-Digital-Economics/ideal_lab_front/commit/0da5c9134cbea4ba144ce3049b087764781d6c43))
+
 ## [0.2.1](https://github.com/IMT-BS-Digital-Economics/ideal_lab_front/compare/v0.2.0...v0.2.1) (2024-11-20)
 
 
