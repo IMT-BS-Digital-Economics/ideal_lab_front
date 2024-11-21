@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.2.3](https://github.com/IMT-BS-Digital-Economics/ideal_lab_front/compare/v0.2.2...v0.2.3) (2024-11-21)
+
+
+### Bug Fixes
+
+* missing href ([b3df48f](https://github.com/IMT-BS-Digital-Economics/ideal_lab_front/commit/b3df48fd3b02f6021b9be2d8a5d728d25f0f4296))
+* upload error ([e50421b](https://github.com/IMT-BS-Digital-Economics/ideal_lab_front/commit/e50421b64533c5e486f456e55c841865d68ea0a3))
+* visuals for environment features ([bde2867](https://github.com/IMT-BS-Digital-Economics/ideal_lab_front/commit/bde28670f8fd37b7ff081ed63c07ba919cc70602))
+
 ## [0.2.2](https://github.com/IMT-BS-Digital-Economics/ideal_lab_front/compare/v0.2.1...v0.2.2) (2024-11-21)
 
 
