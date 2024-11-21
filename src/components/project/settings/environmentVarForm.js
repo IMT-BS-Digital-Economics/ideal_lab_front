@@ -19,7 +19,7 @@ const EnvironmentVarForm = ({
         'post',
         oldKey
             ? `projects/${unique_id}/env/update`
-            : `projects/${unique_id}/env`,
+            : `projects/${unique_id}/env/`,
         {
             key: key,
             value: value,

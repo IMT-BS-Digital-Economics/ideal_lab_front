@@ -104,7 +104,7 @@ const DisplayEnvironmentVarModal = ({ unique_id, isLargeScreen }) => {
 
     useApiCallDataResp(
         'get',
-        `projects/${unique_id}/env`,
+        `projects/${unique_id}/env/`,
         {},
         environmentVars,
         setEnvironmentVars
