@@ -14,6 +14,7 @@ import {
     Stack,
     Text,
     useDisclosure,
+    Heading,
 } from '@chakra-ui/react';
 
 import { useEffect, useState } from 'react';
@@ -24,6 +25,12 @@ import { CheckIcon, CloseIcon } from '@chakra-ui/icons';
 
 const UpdateVar = ({ unique_id, name, setEdit }) => {
     const [isSubmit, setIsSubmit] = useState(false);
+
+    useEffect(() => {
+        if (isSubmit) {
+            setEdit(false);
+        }
+    }, [isSubmit]);
 
     return (
         <Flex align={'center'} gap={3}>
@@ -36,7 +43,9 @@ const UpdateVar = ({ unique_id, name, setEdit }) => {
             <IconButton
                 aria-label={'update value'}
                 icon={<CheckIcon />}
-                onClick={() => setIsSubmit(true)}
+                onClick={() => {
+                    setIsSubmit(true);
+                }}
             />
             <IconButton
                 aria-label={'update value'}
@@ -56,18 +65,18 @@ const DisplayVariable = ({ name, value, header = false, unique_id }) => {
                 <>
                     <Box
                         p={'1em'}
-                        bg={'gray.200'}
-                        borderRadius={'2xl'}
+                        bg="teal.500"
+                        borderRadius={'lg'}
                         align={'center'}
                         minW={'20vw'}
                     >
-                        <Text>{name}</Text>
+                        <Text fontWeight="bold" color="white">{name}</Text>
                     </Box>
                     <Box
                         w="100%"
                         p={'1em'}
                         bg={'gray.200'}
-                        borderRadius={'2xl'}
+                        borderRadius={'lg'}
                         align={'center'}
                         minW={'30vw'}
                         maxW={'30vw'}
@@ -106,7 +115,7 @@ const DisplayEnvironmentVarModal = ({ unique_id, isLargeScreen }) => {
         'get',
         `projects/${unique_id}/env/`,
         {},
-        environmentVars,
+        unique_id ? environmentVars : true,
         setEnvironmentVars
     );
 
@@ -130,7 +139,7 @@ const DisplayEnvironmentVarModal = ({ unique_id, isLargeScreen }) => {
                 <ModalOverlay />
                 <ModalContent>
                     <ModalHeader>
-                        See environment variable of project{' '}
+                        <Heading>Environment Variables</Heading>
                         <Text as={'span'} color={'teal'}>
                             {unique_id}
                         </Text>
@@ -171,11 +180,6 @@ const DisplayEnvironmentVarModal = ({ unique_id, isLargeScreen }) => {
                             ) : null}
                         </Stack>
                     </ModalBody>
-                    <ModalFooter>
-                        <Button mr={3} onClick={onClose}>
-                            Close
-                        </Button>
-                    </ModalFooter>
                 </ModalContent>
             </Modal>
         </>

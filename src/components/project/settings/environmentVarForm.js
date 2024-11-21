@@ -36,6 +36,9 @@ const EnvironmentVarForm = ({
                     isDisabled={!!oldKey}
                     value={key}
                     onChange={(e) => handleChange(e, setKey)}
+                    minW={!!oldKey ? "20vw" : undefined}
+                    bg={"teal.500"}
+                    color="white"
                 ></Input>
             </FormControl>
             <FormControl>
@@ -43,6 +46,8 @@ const EnvironmentVarForm = ({
                 <Input
                     value={value}
                     onChange={(e) => handleChange(e, setValue)}
+                    minW={!!oldKey ? "30vw" : undefined}
+                    maxW={!!oldKey ? "30vw" : undefined}
                 ></Input>
             </FormControl>
         </Stack>
