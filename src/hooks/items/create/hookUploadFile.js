@@ -13,7 +13,7 @@ const hookUploadFile = (itemId, file, setFile, path = '.') => {
 
     useEffect(() => {
         async function UploadFile() {
-            return instance.post(`/projects/${itemId}/upload`, {data: data});
+            return instance.post(`/projects/${itemId}/upload/`, {data: data});
         }
 
         if (file) {

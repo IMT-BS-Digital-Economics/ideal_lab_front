@@ -10,7 +10,7 @@ const hookDeleteUser = ({ isDelete }) => {
     const toast = useToast();
 
     async function deleteUser() {
-        return instance.delete('/user');
+        return instance.delete('/user/');
     }
 
     if (isDelete) {
