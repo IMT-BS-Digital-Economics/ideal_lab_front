@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.4](https://github.com/IMT-BS-Digital-Economics/ideal_lab_front/compare/v0.2.3...v0.2.4) (2024-11-22)
+
+
+### Bug Fixes
+
+* favicon ([97fbfd7](https://github.com/IMT-BS-Digital-Economics/ideal_lab_front/commit/97fbfd78e1dcb22b8ce2236450a4cdf2b207b42e))
+* issue with handling default status ([914bf4b](https://github.com/IMT-BS-Digital-Economics/ideal_lab_front/commit/914bf4b62d62d12bab8ddb4e91aef377eb2316fc))
+
 ## [0.2.3](https://github.com/IMT-BS-Digital-Economics/ideal_lab_front/compare/v0.2.2...v0.2.3) (2024-11-21)
 
 
