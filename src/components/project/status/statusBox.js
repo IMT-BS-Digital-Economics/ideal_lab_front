@@ -10,12 +10,55 @@ import {
 import StatusButton from './statusButton';
 import { pubSub } from '../../service/pubSub';
 
+const STATUS_ACTIONS = {
+    'Powered Off': [
+      { icon: <IoPlay/>, name: 'running', label: 'Run the script' }
+    ],
+    'Ready to launch': [
+      { icon: <IoPlay/>, name: 'running', label: 'Run the script' }
+    ],
+    'Operational': [
+      { icon: <IoStop/>, name: 'off', label: 'Turn off' },
+      { icon: <IoPause/>, name: 'stopped', label: 'Pause' },
+      { icon: <IoPlay/>, name: 'running', label: 'Reboot the script' }
+    ],
+    'Zombie Detected': [
+      { icon: <IoStop/>, name: 'off', label: 'Turn off' }
+    ],
+    'Manually stopped': [
+      { icon: <IoStop/>, name: 'off', label: 'Turn off' },
+      { icon: <IoPlay/>, name: 'restart', label: 'Restart' }
+    ],
+    'Failure Detected': [
+      { icon: <IoStop/>, name: 'off', label: 'Turn off' },
+      { icon: <IoReload/>, name: 'running', label: 'Reboot the script' }
+    ]
+};
+
+const DEFAULT_ACTIONS = [
+    { icon: <IoStop/>, name: 'off', label: 'Turn off' },
+];
+
 const StatusBox = ({ unique_id }) => {
     const [updateStatus, setUpdateStatus] = useState(false);
-
     const [status, setStatus] = useState(false);
-
     const [isSubmit, setIsSubmit] = useState(false);
+
+    useEffect(() => {
+        setStatus(false);
+    }, [updateStatus]);
+
+    useEffect(() => {
+        const refreshHandler = () => {
+            setStatus(false); // Trigger the refresh logic
+        };
+        pubSub.subscribe('refreshStatus', refreshHandler);
+        return () => {
+            pubSub.events.refreshStatus = pubSub.events.refreshStatus.filter(
+                (cb) => cb !== refreshHandler
+            );
+        };
+    }, []);
 
     useApiCallToastResp(
         'post',
@@ -34,23 +77,8 @@ const StatusBox = ({ unique_id }) => {
         15000
     );
 
-    useEffect(() => {
-        setStatus(false);
-    }, [updateStatus]);
-
-    useEffect(() => {
-        const refreshHandler = () => {
-            setStatus(false); // Trigger the refresh logic
-        };
-
-        pubSub.subscribe('refreshStatus', refreshHandler);
-
-        return () => {
-            pubSub.events.refreshStatus = pubSub.events.refreshStatus.filter(
-                (cb) => cb !== refreshHandler
-            );
-        };
-    }, []);
+    const currentStatus = status?.data?.status;
+    const actions = STATUS_ACTIONS[currentStatus] || DEFAULT_ACTIONS;
 
     return (
         <Stack>
@@ -58,129 +86,28 @@ const StatusBox = ({ unique_id }) => {
                 isLoaded={status && status.data && status.data.status}
                 speed={0.8}
             >
-                {status && status.data && status.data.status ? (
-                    <Box>
-                        <Heading
-                            fontSize={'sm'}
-                            color={'teal'}
-                            align={'center'}
-                            mb={3}
-                            style={{ textTransform: 'capitalize' }}
-                        >
-                            {status.data.status}
-                        </Heading>
-                        {status.data.status === 'Powered Off' ||
-                        status.data.status === 'Ready to launch' ? (
-                            <Tooltip label={'Run the script'} openDelay={500}>
-                                <StatusButton
-                                    icon={<IoPlay />}
-                                    name="running"
-                                    setStatus={setUpdateStatus}
-                                    setIsSubmit={setIsSubmit}
-                                />
-                            </Tooltip>
-                        ) : null}
-                        {status.data.status === 'Operational' ? (
-                            <Stack direction={'row'}>
-                                <Tooltip label={'Turn off'} openDelay={500}>
-                                    <StatusButton
-                                        icon={<IoStop />}
-                                        name="off"
-                                        setStatus={setUpdateStatus}
-                                        setIsSubmit={setIsSubmit}
-                                    />
-                                </Tooltip>
-                                <Tooltip label={'Pause'} openDelay={500}>
-                                    <StatusButton
-                                        icon={<IoPause />}
-                                        name="stopped"
-                                        setStatus={setUpdateStatus}
-                                        setIsSubmit={setIsSubmit}
-                                    />
-                                </Tooltip>
-                                <Tooltip
-                                    label={'Reboot the script'}
-                                    openDelay={500}
-                                >
-                                    <StatusButton
-                                        icon={<IoPlay />}
-                                        name="running"
-                                        setStatus={setUpdateStatus}
-                                        setIsSubmit={setIsSubmit}
-                                    />
-                                </Tooltip>
-                            </Stack>
-                        ) : null}
-                        {status.data.status === 'Zombie Detected' ? (
-                            <Tooltip label={'Turn off'} openDelay={500}>
-                                <StatusButton
-                                    icon={<IoStop />}
-                                    name="off"
-                                    setStatus={setUpdateStatus}
-                                    setIsSubmit={setIsSubmit}
-                                />
-                            </Tooltip>
-                        ) : null}
-                        {status.data.status === 'Manually stopped' ? (
-                            <Stack direction={'row'}>
-                                <Tooltip label={'Turn off'} openDelay={500}>
-                                    <StatusButton
-                                        icon={<IoStop />}
-                                        name="off"
-                                        setStatus={setUpdateStatus}
-                                        setIsSubmit={setIsSubmit}
-                                    />
-                                </Tooltip>
-                                <Tooltip label={'Restart'} openDelay={500}>
-                                    <StatusButton
-                                        icon={<IoPlay />}
-                                        name="restart"
-                                        setStatus={setUpdateStatus}
-                                        setIsSubmit={setIsSubmit}
-                                    />
-                                </Tooltip>
-                            </Stack>
-                        ) : null}
-                        {status.data.status === 'Failure Detected' ? (
-                            <Stack direction={'row'}>
-                                <Tooltip label={'Turn off'} openDelay={500}>
-                                    <StatusButton
-                                        icon={<IoStop />}
-                                        name="off"
-                                        setStatus={setUpdateStatus}
-                                        setIsSubmit={setIsSubmit}
-                                    />
-                                </Tooltip>
-                                <Tooltip
-                                    label={'Reboot the script'}
-                                    openDelay={500}
-                                >
-                                    <StatusButton
-                                        icon={<IoReload />}
-                                        name="running"
-                                        setStatus={setUpdateStatus}
-                                        setIsSubmit={setIsSubmit}
-                                    />
-                                </Tooltip>
-                            </Stack>
-                        ) : null}
-                    </Box>
-                ) : (
-                    <Box w={'100%'} h={'100%'}>
-                        <Heading
-                            fontSize={'sm'}
-                            color={'teal'}
-                            align={'center'}
-                            mb={3}
-                            style={{ textTransform: 'capitalize' }}
-                        >
-                            Hello
-                        </Heading>
-                        <Tooltip label={'Reboot the script'} openDelay={500}>
-                            <StatusButton icon={<IoReload />} name="running" />
-                        </Tooltip>
-                    </Box>
-                )}
+                <Box>
+                    <Heading
+                        fontSize={'sm'}
+                        color={'teal'}
+                        align={'center'}
+                        mb={3}
+                        style={{ textTransform: 'capitalize' }}
+                    >
+                        {currentStatus || 'Undefined'}
+                    </Heading>
+
+                    <Stack direction="row" className="justify-center">
+                        {actions.map((action, index) => (
+                            <StatusButton key={index}
+                            icon={action.icon}
+                            name={action.name}
+                            label={action.label}
+                            setStatus={setUpdateStatus}
+                            setIsSubmit={setIsSubmit}/>
+                        ))}
+                    </Stack>
+                </Box>
             </Skeleton>
         </Stack>
     );
